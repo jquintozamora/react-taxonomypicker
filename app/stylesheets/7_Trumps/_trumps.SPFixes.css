@@ -1,0 +1,29 @@
+/*
+ * UTILITIES
+ */
+
+.ms-webpart-cell-vertical-inline-table {
+  table-layout: fixed;
+}
+
+div.ms-TextField label.ms-Label {
+  text-align: left;
+  font-size: 16px;
+  display: block;
+  color: white;
+  margin-top: 10px;
+  padding: 5px 0;
+}
+
+div.ms-DatePicker {
+    margin-bottom: 0;
+}
+
+.ms-TextField input[type=text]:hover {
+  border-color: #ABABAB;
+  background-color: white;
+}
+.ms-TextField input[type=text] {
+  border-color: #ABABAB;
+  background-color: white;
+}

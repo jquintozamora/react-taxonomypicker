@@ -1,0 +1,74 @@
+{
+  "name": "react-taxonomypicker",
+  "version": "0.0.1",
+  "description": "Office 365 - SharePoint React Taxonomy Picker",
+  "main": "index.js",
+  "style": "lib/React.TaxonomyPicker.css",
+  "typings": "lib/index",
+  "scripts": {
+    "prebuild": "npm install",
+    "build": "set NODE_ENV=production && webpack --progress --config ./webpack/webpack.config.prod.js",
+    "stats": "set NODE_ENV=production && webpack --progress --config ./webpack/webpack.config.stats.js --profile --json > ./webpack/stats/stats.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jquintozamora/react-taxonomypicker.git"
+  },
+  "keywords": [
+    "React",
+    "Taxonomy",
+    "Picker",
+    "Managed",
+    "Metadata",
+    "TermSet",
+    "TermStore",
+    "SharePoint",
+    "Office",
+    "365"
+  ],
+  "author": "Jose Quinto <quintorel@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jquintozamora/react-taxonomypicker/issues"
+  },
+  "homepage": "https://github.com/jquintozamora/react-taxonomypicker#readme",
+  "dependencies": {
+    "polyfill-io-feature-detection": "^1.1.13",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-select": "^1.0.0-rc.3"
+  },
+  "peerDependencies": {
+    "react": ">=15.0.0",
+    "react-dom": ">=15.0.0"
+  },
+  "devDependencies": {
+    "@types/es6-promise": "0.0.32",
+    "@types/faker": "^3.1.32",
+    "@types/node": "^7.0.5",
+    "@types/react": "^15.0.12",
+    "@types/react-dom": "^0.14.23",
+    "@types/react-select": "^1.0.42",
+    "@types/sharepoint": "^2013.1.2",
+    "autoprefixer": "^6.7.5",
+    "awesome-typescript-loader": "^3.0.8",
+    "css-loader": "^0.26.2",
+    "extract-text-webpack-plugin": "^2.0.0",
+    "faker": "^4.1.0",
+    "path": "^0.12.7",
+    "postcss-custom-properties": "^5.0.2",
+    "postcss-import": "^9.1.0",
+    "postcss-loader": "^1.3.2",
+    "postcss-nesting": "^2.3.1",
+    "source-map-loader": "^0.1.6",
+    "style-loader": "^0.13.2",
+    "stylelint": "^7.9.0",
+    "tslint": "^4.4.2",
+    "tslint-react": "^2.4.0",
+    "typescript": "^2.2.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1",
+    "webpack-visualizer-plugin": "^0.1.11"
+  }
+}

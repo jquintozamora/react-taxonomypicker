@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        // "target": "es5",
+        "module": "commonjs",
+        "jsx": "react",
+        "declaration": true,
+        "outDir": "lib/",
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "types": [
+            "node",
+            "react",
+            "react-dom",
+            "sharepoint",
+            "es6-promise",
+            "faker"
+        ]
+    },
+    "files": [
+        "./app/src/index.tsx"
+    ],
+    "include": [
+        "app/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts",
+        "examples/**/*"
+    ]
+}

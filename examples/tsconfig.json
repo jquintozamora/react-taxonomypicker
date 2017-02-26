@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "forceConsistentCasingInFileNames": true,
+        "module": "commonjs",
+        "jsx": "react",
+        "allowJs": true,
+        "declaration": false,
+        "sourceMap": true,
+        "//alwaysStrict": true,
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "types": [
+            "react",
+            "react-dom"
+        ]
+    },
+    "include": [
+        "examples/**/*"
+    ]
+}
