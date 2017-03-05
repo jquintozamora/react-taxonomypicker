@@ -7,11 +7,11 @@ let items: Array<{}> = [];
 for (let i = 0; i <= numberOfItems; i++) {
     const tempLabel = faker.lorem.word();
     const termObj: any = {
-        guid: faker.helpers.replaceSymbolWithNumber("########-####-####-####-########"), // currentTerm.get_id().toString(),
-        label: tempLabel, // currentTerm.get_name(),
-        name: tempLabel, // currentTerm.get_name(),
-        path: tempLabel, // currentTerm.get_pathOfTerm(),
-        value: tempLabel, // currentTerm.get_name(),
+        guid: faker.helpers.replaceSymbolWithNumber("########-####-####-####-########"),
+        label: tempLabel,
+        name: tempLabel,
+        path: tempLabel,
+        value: tempLabel,
     };
     items = [...items, termObj];
 }
