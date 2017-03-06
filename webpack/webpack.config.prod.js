@@ -14,14 +14,9 @@ module.exports = {
     context: resolve(__dirname, '../'),
     output: {
         path: resolve(__dirname, './../lib'),
-        libraryTarget: 'commonjs2',
         filename: '[name].js',
-        publicPath: '/'
-    },
-    output: {
-        filename: '[name].js',
-        path: './lib/components/',
-        libraryTarget: 'commonjs2',
+        libraryTarget: 'umd',
+        library: 'ReactTaxonomyPicker'
     },
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
