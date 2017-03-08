@@ -7,16 +7,17 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     devtool: 'source-map',
-    // target: 'node',
+    target: 'node',
     entry: {
         'React.TaxonomyPicker': './app/src/index.tsx'
     },
     context: resolve(__dirname, '../'),
     output: {
-        path: resolve(__dirname, './../lib'),
+        path: resolve(__dirname, './../dist'),
         filename: '[name].js',
         libraryTarget: 'umd',
-        library: 'ReactTaxonomyPicker'
+        library: 'ReactTaxonomyPicker',
+        umdNamedDefine: true
     },
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
@@ -35,10 +36,6 @@ module.exports = {
             allChunks: true
         }),
         new webpack.NormalModuleReplacementPlugin(/..\/..\/..\/..\/utils\/MockAPI\/SP.Taxonomy$/, "../../../../utils/API/SP.Taxonomy"),
-        // Plugings for optimizing size and performance.
-        // Here you have all the available by now:
-        //    Webpack 1. https://github.com/webpack/webpack/blob/v1.13.3/lib/optimize
-        //    Webpack 2. https://github.com/webpack/webpack/tree/master/lib/optimize
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false,
@@ -104,10 +101,8 @@ module.exports = {
                                 sourceMap: true,
                                 plugins: () => [
                                     require("postcss-import")(),
-                                    // Following CSS Nesting Module Level 3: http://tabatkins.github.io/specs/css-nesting/
                                     require("postcss-nesting")(),
                                     require("postcss-custom-properties")(),
-                                    //https://github.com/ai/browserslist
                                     require("autoprefixer")({
                                         browsers: ['last 2 versions', 'ie >= 9']
                                     })
@@ -139,10 +134,8 @@ module.exports = {
                             options: {
                                 plugins: () => ([
                                     require("postcss-import")(),
-                                    // Following CSS Nesting Module Level 3: http://tabatkins.github.io/specs/css-nesting/
                                     require("postcss-nesting")(),
                                     require("postcss-custom-properties")(),
-                                    //https://github.com/ai/browserslist
                                     require("autoprefixer")({
                                         browsers: ['last 2 versions', 'ie >= 9']
                                     })
@@ -153,13 +146,5 @@ module.exports = {
                 })
             }
         ]
-    },
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
-    // externals: {
-    //     "react": "React",
-    //     "react-dom": "ReactDOM"
-    // }
+    }
 };

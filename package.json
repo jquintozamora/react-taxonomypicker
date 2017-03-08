@@ -2,8 +2,8 @@
   "name": "react-taxonomypicker",
   "version": "0.0.1",
   "description": "Office 365 - SharePoint React Taxonomy Picker",
-  "main": "index.js",
-  "style": "lib/React.TaxonomyPicker.css",
+  "main": "dist/React.TaxonomyPicker.js",
+  "style": "dist/React.TaxonomyPicker.css",
   "typings": "lib/index",
   "scripts": {
     "prebuild": "npm install",
