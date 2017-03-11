@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import { Async, Select } from "react-select/lib/Select";
 import TaxonomyAPI from "../../utils/MockAPI/SP.Taxonomy";
 

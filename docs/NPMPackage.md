@@ -10,3 +10,4 @@
 - https://github.com/nkbt/react-component-template
 - https://github.com/kriasoft/react-component-starter
 - https://github.com/survivejs/react-component-boilerplate
+- https://github.com/dantrain/react-stonecutter
