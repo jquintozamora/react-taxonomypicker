@@ -23,12 +23,19 @@ module.exports = {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js"]
     },
+    // Exclude React from the bundle, must be react and react-dom here otherwise will not be excluded
     externals: {
-        react: {
+        "react": {
             root: 'React',
             commonjs2: 'react',
             commonjs: 'react',
             amd: 'react'
+        },
+        "react-dom": {
+            root: 'ReactDOM',
+            commonjs2: 'ReactDOM',
+            commonjs: 'ReactDOM',
+            amd: 'ReactDOM'
         }
     },
     plugins: [
@@ -43,33 +50,32 @@ module.exports = {
             filename: '../dist/[name].css',
             allChunks: true
         }),
-        new webpack.NormalModuleReplacementPlugin(/..\/..\/..\/..\/utils\/MockAPI\/SP.Taxonomy$/, "../../../../utils/API/SP.Taxonomy"),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false,
-                screw_ie8: true,
-                conditionals: true,
-                unused: true,
-                comparisons: true,
-                sequences: true,
-                dead_code: true,
-                evaluate: true,
-                if_return: true,
-                join_vars: true,
-                drop_console: true,
-                drop_debugger: true,
-                global_defs: {
-                    __REACT_HOT_LOADER__: undefined // eslint-disable-line no-undefined
-                }
-            },
-            minimize: true,
-            debug: false,
-            sourceMap: true,
-            output: {
-                comments: false
-            },
-
-        })
+        new webpack.NormalModuleReplacementPlugin(/..\/..\/utils\/MockAPI\/SP.Taxonomy$/, "../../utils/API/SP.Taxonomy"),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false,
+        //         screw_ie8: true,
+        //         conditionals: true,
+        //         unused: true,
+        //         comparisons: true,
+        //         sequences: true,
+        //         dead_code: true,
+        //         evaluate: true,
+        //         if_return: true,
+        //         join_vars: true,
+        //         drop_console: true,
+        //         drop_debugger: true,
+        //         global_defs: {
+        //             __REACT_HOT_LOADER__: undefined // eslint-disable-line no-undefined
+        //         }
+        //     },
+        //     minimize: false,
+        //     debug: false,
+        //     sourceMap: true,
+        //     output: {
+        //         comments: false
+        //     },
+        //})
     ],
     module: {
         // loaders -> rules in webpack 2

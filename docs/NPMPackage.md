@@ -8,3 +8,5 @@
 - https://github.com/DxCx/ts-library-starter
 - https://github.com/kalcifer/webpack-library-example
 - https://github.com/nkbt/react-component-template
+- https://github.com/kriasoft/react-component-starter
+- https://github.com/survivejs/react-component-boilerplate

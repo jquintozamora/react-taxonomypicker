@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as Select from "react-select";
+import { Async, Select } from "react-select/lib/Select";
 import TaxonomyAPI from "../../utils/MockAPI/SP.Taxonomy";
 
 /* tslint:disable:no-var-requires */
@@ -37,7 +37,7 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
 
     // Initial Async Loading here. Only in Container Components
     public componentDidMount() {
-        const {termSetGuid, termSetName, termSetCountMax } = this.props;
+        const { termSetGuid, termSetName, termSetCountMax } = this.props;
         TaxonomyAPI.getTermSetCount(termSetGuid, termSetName)
             .then((termSetCount: number) => {
                 if (termSetCount > termSetCountMax) {
@@ -91,7 +91,7 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
     }
 
     public render() {
-        const {asyncLoad } = this.state;
+        const { asyncLoad } = this.state;
         return (
             <div key={this.props.name} className={styles.container} name={this.props.name}>
                 <label className={styles.label} htmlFor={this.props.name}>{this.props.displayName}</label>
