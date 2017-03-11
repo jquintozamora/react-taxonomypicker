@@ -7,7 +7,6 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     devtool: 'source-map',
-    target: 'node',
     entry: {
         'React.TaxonomyPicker': './app/src/index.tsx'
     },
@@ -15,9 +14,10 @@ module.exports = {
     output: {
         path: resolve(__dirname, './../dist'),
         filename: '[name].js',
+        // Possible value - amd, commonjs, commonjs2, commonjs-module, this, var
         libraryTarget: 'umd',
-        library: 'ReactTaxonomyPicker',
-        umdNamedDefine: true
+        // library bundle to be available as a global variable when imported
+        library: 'TaxonomyPicker'
     },
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.

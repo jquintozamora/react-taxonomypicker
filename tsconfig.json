@@ -5,7 +5,7 @@
         "module": "commonjs",
         "jsx": "react",
         "declaration": false,
-        "outDir": "lib/",
+        "outDir": "dist/",
         "typeRoots": [
             "./node_modules/@types"
         ],

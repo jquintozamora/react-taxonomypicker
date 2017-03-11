@@ -3,8 +3,8 @@
   "version": "0.0.3",
   "description": "Office 365 - SharePoint React Taxonomy Picker",
   "main": "dist/React.TaxonomyPicker.js",
+  "module": "src/index.tsx",
   "style": "dist/React.TaxonomyPicker.css",
-  "typings": "lib/index",
   "scripts": {
     "prebuild": "npm install",
     "build": "set NODE_ENV=production && webpack --progress --config ./webpack/webpack.config.prod.js",
