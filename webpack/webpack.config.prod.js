@@ -52,7 +52,7 @@ module.exports = {
             filename: '../dist/[name].css',
             allChunks: true
         }),
-        new webpack.NormalModuleReplacementPlugin(/..\/..\/utils\/MockAPI\/SP.Taxonomy$/, "../../utils/API/SP.Taxonomy"),
+        // new webpack.NormalModuleReplacementPlugin(/..\/..\/utils\/MockAPI\/SP.Taxonomy$/, "../../utils/API/SP.Taxonomy"),
         // new webpack.optimize.UglifyJsPlugin({
         //     compress: {
         //         warnings: false,

@@ -7,7 +7,7 @@
 		exports["TaxonomyPicker"] = factory(require("react"), require("react-dom"));
 	else
 		root["TaxonomyPicker"] = factory(root["React"], root["ReactDOM"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_18__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_17__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -166,11 +166,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(18);
+var _reactDom = __webpack_require__(17);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactInputAutosize = __webpack_require__(10);
+var _reactInputAutosize = __webpack_require__(9);
 
 var _reactInputAutosize2 = _interopRequireDefault(_reactInputAutosize);
 
@@ -178,7 +178,7 @@ var _classnames = __webpack_require__(1);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _utilsDefaultArrowRenderer = __webpack_require__(16);
+var _utilsDefaultArrowRenderer = __webpack_require__(15);
 
 var _utilsDefaultArrowRenderer2 = _interopRequireDefault(_utilsDefaultArrowRenderer);
 
@@ -190,27 +190,27 @@ var _utilsDefaultMenuRenderer = __webpack_require__(4);
 
 var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
-var _utilsDefaultClearRenderer = __webpack_require__(17);
+var _utilsDefaultClearRenderer = __webpack_require__(16);
 
 var _utilsDefaultClearRenderer2 = _interopRequireDefault(_utilsDefaultClearRenderer);
 
-var _Async = __webpack_require__(11);
+var _Async = __webpack_require__(10);
 
 var _Async2 = _interopRequireDefault(_Async);
 
-var _AsyncCreatable = __webpack_require__(12);
+var _AsyncCreatable = __webpack_require__(11);
 
 var _AsyncCreatable2 = _interopRequireDefault(_AsyncCreatable);
 
-var _Creatable = __webpack_require__(13);
+var _Creatable = __webpack_require__(12);
 
 var _Creatable2 = _interopRequireDefault(_Creatable);
 
-var _Option = __webpack_require__(14);
+var _Option = __webpack_require__(13);
 
 var _Option2 = _interopRequireDefault(_Option);
 
-var _Value = __webpack_require__(15);
+var _Value = __webpack_require__(14);
 
 var _Value2 = _interopRequireDefault(_Value);
 
@@ -1522,7 +1522,7 @@ var React = __webpack_require__(0);
 var Select_1 = __webpack_require__(2);
 var SP_Taxonomy_1 = __webpack_require__(7);
 /* tslint:disable:no-var-requires */
-var styles = __webpack_require__(9);
+var styles = __webpack_require__(8);
 var TaxonomyPicker = (function (_super) {
     __extends(TaxonomyPicker, _super);
     function TaxonomyPicker(props, context) {
@@ -1620,96 +1620,64 @@ exports.default = TaxonomyPicker;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Cache_1 = __webpack_require__(8);
+var delay = 500;
+var numberOfItems = 1500;
+var items = [];
+for (var i = 0; i <= numberOfItems; i++) {
+    var tempLabel = "Word " + i;
+    var termObj = {
+        guid: newGuid(),
+        label: tempLabel,
+        name: tempLabel,
+        path: tempLabel,
+        value: tempLabel,
+    };
+    items = items.concat([termObj]);
+}
+function newGuid() {
+    return "xxxxxxxx-xxxx-5xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0;
+        var v = c === "x" ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+function getTermsCount(termSetGuid) {
+    var termCount = 0;
+    switch (termSetGuid) {
+        case "7c16e180-d093-4709-8426-e7997acb4302":
+            termCount = 314;
+            break;
+        case "dc85f60c-1a19-4be0-ad20-544bbca0b1b4":
+            termCount = 1500;
+            break;
+        case "26ebf149-101a-4996-9df2-8179a537350d":
+            termCount = 80;
+        default:
+            break;
+    }
+    return termCount;
+}
 var TaxonomyAPI = (function () {
     function TaxonomyAPI() {
     }
     /*
-     * Function to get the number of terms of a given taxonomy Term Set
+     * Function to get the number of items of a given taxonomy Term Set
      * It will be used to decide if the TaxonomyPicker control renders as async or async
      * It will use Session Storage Cache to keep the results. Cache will expire in 1 week = 10080 minutes
      */
     TaxonomyAPI.getTermSetCount = function (termSetGuid, termSetName) {
         return new Promise(function (resolve, reject) {
-            var termSetCountCacheExpiresMin = 10080;
-            var termSetCountCacheKey = "TermSetCount_" + termSetName + termSetGuid;
-            var termSetCountCache = Cache_1.Cache.getStoredDataByKey(termSetCountCacheKey);
-            // Try get Term Set count from the cache
-            if (termSetCountCache) {
-                resolve(termSetCountCache);
-                return;
-            }
-            // If Term Set count is not in the cache, do the query using JSOM
-            SP.SOD.executeFunc("sp.js", "SP.ClientContext", function () {
-                SP.SOD.registerSod("sp.taxonomy.js", SP.Utilities.Utility.getLayoutsPageUrl("sp.taxonomy.js"));
-                SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", function () {
-                    var ctx = SP.ClientContext.get_current();
-                    var session = SP.Taxonomy.TaxonomySession.getTaxonomySession(ctx);
-                    var termStore = session.getDefaultSiteCollectionTermStore();
-                    var termSet = termStore.getTermSet(new SP.Guid(termSetGuid));
-                    var terms = termSet.getAllTerms();
-                    ctx.load(terms, "Include()");
-                    ctx.executeQueryAsync(function () {
-                        var termCount = terms.get_count();
-                        Cache_1.Cache.setStoredDataByKey(termSetCountCacheKey, termCount, termSetCountCacheExpiresMin);
-                        resolve(termCount);
-                    }, function (sender, args) {
-                        // console.log('Error: ' + args.get_message());
-                        reject("Error in getTermSetCount. Message: " + args.get_message());
-                    });
-                });
-            });
+            setTimeout(function () {
+                var termCount = getTermsCount(termSetGuid);
+                resolve(termCount);
+            }, delay);
         });
     };
-    /*
-     * Function to get all terms of a given taxonomy Term Set
-     * It will be used to get all terms when a TaxonomyPicker is Sync
-     * Session Storage Cache will expire in 1 day = 1440 minutes
-     */
     TaxonomyAPI.getAllTermsByTermSet = function (termSetGuid, termSetName, showOnlyAdvailableForTag) {
         return new Promise(function (resolve, reject) {
-            var termSetDataCacheExpiresMin = 1440;
-            var termSetDataCacheKey = "TermSetData_" + termSetName + termSetGuid;
-            var termSetDataCache = Cache_1.Cache.getStoredDataByKey(termSetDataCacheKey);
-            // Try get Term Set data from the cache
-            if (termSetDataCache) {
-                resolve(termSetDataCache);
-                return;
-            }
-            // If Term Set data is not in the cache, do the query using JSOM
-            SP.SOD.executeFunc("sp.js", "SP.ClientContext", function () {
-                SP.SOD.registerSod("sp.taxonomy.js", SP.Utilities.Utility.getLayoutsPageUrl("sp.taxonomy.js"));
-                SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", function () {
-                    var ctx = SP.ClientContext.get_current();
-                    var taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(ctx);
-                    var termStore = taxSession.getDefaultSiteCollectionTermStore();
-                    var termSet = termStore.getTermSet(new SP.Guid(termSetGuid));
-                    var terms = termSet.getAllTerms();
-                    ctx.load(terms, "Include(IsRoot, TermsCount, Id, Name, PathOfTerm, IsAvailableForTagging)");
-                    ctx.executeQueryAsync(function () {
-                        var items = [];
-                        var termEnumerator = terms.getEnumerator();
-                        while (termEnumerator.moveNext()) {
-                            var currentTerm = termEnumerator.get_current();
-                            var isAvailableForTagging = showOnlyAdvailableForTag ? currentTerm.get_isAvailableForTagging() : true;
-                            if (isAvailableForTagging) {
-                                var termObj = {
-                                    guid: currentTerm.get_id().toString(),
-                                    label: currentTerm.get_name(),
-                                    name: currentTerm.get_name(),
-                                    path: currentTerm.get_pathOfTerm(),
-                                    value: currentTerm.get_name()
-                                };
-                                items = items.concat([termObj]);
-                            }
-                        }
-                        Cache_1.Cache.setStoredDataByKey(termSetDataCacheKey, items, termSetDataCacheExpiresMin);
-                        resolve(items);
-                    }, function (sender, args) {
-                        reject(args.get_message());
-                    });
-                });
-            });
+            setTimeout(function () {
+                resolve(items.slice(0, getTermsCount(termSetGuid)));
+            }, delay);
         });
     };
     /*
@@ -1721,44 +1689,13 @@ var TaxonomyAPI = (function () {
         if (resultCollectionSize === void 0) { resultCollectionSize = 10; }
         if (showOnlyAdvailableForTag === void 0) { showOnlyAdvailableForTag = true; }
         return new Promise(function (resolve, reject) {
-            SP.SOD.executeFunc("sp.js", "SP.ClientContext", function () {
-                SP.SOD.registerSod("sp.taxonomy.js", SP.Utilities.Utility.getLayoutsPageUrl("sp.taxonomy.js"));
-                SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", function () {
-                    var ctx = SP.ClientContext.get_current();
-                    var taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(ctx);
-                    var termStore = taxSession.getDefaultSiteCollectionTermStore();
-                    var termSet = termStore.getTermSet(new SP.Guid(termSetGuid));
-                    var lmi = new SP.Taxonomy.LabelMatchInformation(ctx);
-                    lmi.set_termLabel(keyword);
-                    lmi.set_defaultLabelOnly(true);
-                    lmi.set_stringMatchOption(SP.Taxonomy.StringMatchOption.startsWith);
-                    lmi.set_resultCollectionSize(resultCollectionSize);
-                    lmi.set_trimUnavailable(true);
-                    var terms = termSet.getTerms(lmi);
-                    ctx.load(terms, "Include(IsRoot, TermsCount, Id, Name, PathOfTerm, IsAvailableForTagging)");
-                    ctx.executeQueryAsync(function () {
-                        var items = [];
-                        var termEnumerator = terms.getEnumerator();
-                        while (termEnumerator.moveNext()) {
-                            var currentTerm = termEnumerator.get_current();
-                            var isAvailableForTagging = showOnlyAdvailableForTag ? currentTerm.get_isAvailableForTagging() : true;
-                            if (isAvailableForTagging) {
-                                var termObj = {
-                                    guid: currentTerm.get_id().toString(),
-                                    label: currentTerm.get_name(),
-                                    name: currentTerm.get_name(),
-                                    path: currentTerm.get_pathOfTerm(),
-                                    value: currentTerm.get_name()
-                                };
-                                items = items.concat([termObj]);
-                            }
-                        }
-                        resolve(items);
-                    }, function (sender, args) {
-                        reject(args.get_message());
-                    });
-                });
-            });
+            setTimeout(function () {
+                resolve(items
+                    .filter(function (item) {
+                    return (item.name.search(keyword) > -1);
+                })
+                    .slice(0, resultCollectionSize));
+            }, delay);
         });
     };
     return TaxonomyAPI;
@@ -1768,65 +1705,13 @@ exports.default = TaxonomyAPI;
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Cache = (function () {
-    function Cache() {
-    }
-    Cache.buildStorageKey = function (key) {
-        var prefix = "";
-        if (window && window.hasOwnProperty("location") && window.location.hasOwnProperty("host") && window.location.hasOwnProperty("pathname")) {
-            prefix = window.location.host + window.location.pathname;
-        }
-        return (prefix + "_" + key).replace(/[^a-zA-Z0-9]/g, ".");
-    };
-    Cache.clearStoredDataByKey = function (key) {
-        if (window.sessionStorage) {
-            var newKey = Cache.buildStorageKey(key);
-            sessionStorage.removeItem(newKey);
-        }
-    };
-    Cache.getStoredDataByKey = function (key) {
-        var returnData = null;
-        if (window.sessionStorage) {
-            var newKey = Cache.buildStorageKey(key);
-            var sessionCache = window.sessionStorage.getItem(newKey);
-            if (sessionCache !== null) {
-                var nowDt = new Date();
-                var cachedData = JSON.parse(sessionCache);
-                if (cachedData.expiryTime > nowDt) {
-                    returnData = cachedData.data;
-                }
-            }
-        }
-        return returnData;
-    };
-    Cache.setStoredDataByKey = function (key, dataToStore, expireMinutes) {
-        if (window.sessionStorage) {
-            var newKey = Cache.buildStorageKey(key);
-            var nowDt = new Date();
-            var expiryTime = nowDt.setMinutes(nowDt.getMinutes() + 2);
-            var data = { data: dataToStore, expiryTime: expiryTime };
-            window.sessionStorage.setItem(newKey, JSON.stringify(data));
-        }
-    };
-    return Cache;
-}());
-exports.Cache = Cache;
-
-
-/***/ }),
-/* 9 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 module.exports = {"label":"TaxonomyPicker-module_label_3G9gx"};
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1961,7 +1846,7 @@ var AutosizeInput = React.createClass({
 module.exports = AutosizeInput;
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2232,7 +2117,7 @@ function defaultChildren(props) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2294,7 +2179,7 @@ var AsyncCreatable = _react2['default'].createClass({
 module.exports = AsyncCreatable;
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2616,7 +2501,7 @@ function shouldKeyDownEventCreateNewOption(_ref6) {
 module.exports = Creatable;
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2733,7 +2618,7 @@ var Option = _react2['default'].createClass({
 module.exports = Option;
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2845,7 +2730,7 @@ var Value = _react2['default'].createClass({
 module.exports = Value;
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2875,7 +2760,7 @@ function arrowRenderer(_ref) {
 module.exports = exports["default"];
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2903,13 +2788,13 @@ function clearRenderer() {
 module.exports = exports['default'];
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_18__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_17__;
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
