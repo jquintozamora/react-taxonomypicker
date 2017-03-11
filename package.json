@@ -34,7 +34,6 @@
   },
   "homepage": "https://github.com/jquintozamora/react-taxonomypicker#readme",
   "dependencies": {
-    "polyfill-io-feature-detection": "^1.1.13",
     "react-select": "^1.0.0-rc.3"
   },
   "peerDependencies": {
@@ -65,7 +64,6 @@
     "tslint-react": "^2.4.0",
     "typescript": "^2.2.1",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1",
     "webpack-visualizer-plugin": "^0.1.11"
   }
 }
