@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Async, Select } from "react-select/lib/Select";
+import * as Select from "react-select";
 import TaxonomyAPI from "../../utils/MockAPI/SP.Taxonomy";
 
 /* tslint:disable:no-var-requires */

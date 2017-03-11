@@ -1519,7 +1519,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Select_1 = __webpack_require__(2);
+var Select = __webpack_require__(2);
 var SP_Taxonomy_1 = __webpack_require__(7);
 /* tslint:disable:no-var-requires */
 var styles = __webpack_require__(8);
@@ -1576,10 +1576,10 @@ var TaxonomyPicker = (function (_super) {
     };
     TaxonomyPicker.prototype.getSelectControl = function (async, loadOptions, minimumInput) {
         if (async) {
-            return (React.createElement(Select_1.Select.Async, { isLoading: !this.state.options, backspaceRemoves: false, name: this.props.name, simpleValue: false, placeholder: "Type here to search...", loadOptions: this._asyncLoadOptions, minimumInput: 1, multi: this.props.multi, ref: this.props.name, onChange: this.handleSelectChange, options: this.state.options, value: this.state.value }));
+            return (React.createElement(Select.Async, { isLoading: !this.state.options, backspaceRemoves: false, name: this.props.name, simpleValue: false, placeholder: "Type here to search...", loadOptions: this._asyncLoadOptions, minimumInput: 1, multi: this.props.multi, ref: this.props.name, onChange: this.handleSelectChange, options: this.state.options, value: this.state.value }));
         }
         else {
-            return (React.createElement(Select_1.Select, { isLoading: !this.state.options, backspaceRemoves: false, name: this.props.name, simpleValue: false, placeholder: "Type here to search...", multi: this.props.multi, ref: this.props.name, onChange: this.handleSelectChange, options: this.state.options, value: this.state.value }));
+            return (React.createElement(Select, { isLoading: !this.state.options, backspaceRemoves: false, name: this.props.name, simpleValue: false, placeholder: "Type here to search...", multi: this.props.multi, ref: this.props.name, onChange: this.handleSelectChange, options: this.state.options, value: this.state.value }));
         }
     };
     TaxonomyPicker.prototype.render = function () {
