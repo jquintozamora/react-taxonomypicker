@@ -90,7 +90,7 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
 
     }
 
-    public doRender() {
+    public render() {
         const {asyncLoad } = this.state;
         return (
             <div key={this.props.name} className={styles.container} name={this.props.name}>
