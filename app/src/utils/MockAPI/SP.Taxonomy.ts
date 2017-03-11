@@ -1,19 +1,25 @@
-import * as faker from "faker";
-
 const delay: number = 500;
 const numberOfItems = 1500;
 
 let items: Array<{}> = [];
 for (let i = 0; i <= numberOfItems; i++) {
-    const tempLabel = faker.lorem.word();
+    const tempLabel = "Word " + i;
     const termObj: any = {
-        guid: faker.helpers.replaceSymbolWithNumber("########-####-####-####-########"),
+        guid: newGuid(),
         label: tempLabel,
         name: tempLabel,
         path: tempLabel,
         value: tempLabel,
     };
     items = [...items, termObj];
+}
+
+function newGuid() {
+    return "xxxxxxxx-xxxx-5xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+        const r = Math.random() * 16 | 0;
+        const v = c === "x" ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
 }
 
 function getTermsCount(termSetGuid: string): number {

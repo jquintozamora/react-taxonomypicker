@@ -55,7 +55,6 @@
     "awesome-typescript-loader": "^3.0.8",
     "css-loader": "^0.26.2",
     "extract-text-webpack-plugin": "^2.0.0",
-    "faker": "^4.1.0",
     "path": "^0.12.7",
     "postcss-custom-properties": "^5.0.2",
     "postcss-import": "^9.1.0",
