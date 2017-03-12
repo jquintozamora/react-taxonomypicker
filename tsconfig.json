@@ -1,10 +1,15 @@
 {
     "compilerOptions": {
-        "declaration": true,
-        "outDir": "./",
-        "sourceMap": true,
         "target": "es5",
         "module": "commonjs",
+        "declaration": true,
+        "outDir": "./",
+        "noImplicitAny": false,
+        "suppressImplicitAnyIndexErrors": true,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "sourceMap": true,
         "jsx": "react",
         "typeRoots": [
             "./node_modules/@types"
@@ -16,6 +21,14 @@
             "es6-promise"
         ]
     },
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./app/src/index.tsx",
+        "./app/src/components/TaxonomyPicker/TaxonomyPicker.tsx"
+    ],
     "include": [
         "app/src/**/*"
     ],

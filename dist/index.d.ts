@@ -1,2 +1,3 @@
 import "../stylesheets/main.css";
-export * from './components/TaxonomyPicker/TaxonomyPicker';
+import * as TaxonomyPicker from './components/TaxonomyPicker/TaxonomyPicker';
+export default TaxonomyPicker;

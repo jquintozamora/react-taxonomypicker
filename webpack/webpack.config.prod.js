@@ -95,7 +95,15 @@ module.exports = {
             {
                 test: /\.ts(x?)$/,
                 exclude: /node_modules/,
-                loader: 'ts-loader'
+                use: [
+                        {
+                            loader: 'ts-loader',
+                            options: {
+                                // transpileOnly: true,
+                                // logInfoToStdOut: true
+                            }
+                        }
+                    ]
             },
             {
                 test: /\.css$/i,

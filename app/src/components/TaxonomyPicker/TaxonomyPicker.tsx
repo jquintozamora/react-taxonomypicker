@@ -4,6 +4,8 @@ import TaxonomyAPI from "../../utils/MockAPI/SP.Taxonomy";
 import ITaxonomyPickerProps from "./ITaxonomyPickerProps";
 import ITaxonomyPickerState from "./ITaxonomyPickerState";
 
+
+
 /* tslint:disable:no-var-requires */
 const styles: any = require("./TaxonomyPicker.module.css");
 /* tslint:enable:no-var-requires */
