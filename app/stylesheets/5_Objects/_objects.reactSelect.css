@@ -146,7 +146,7 @@
   outline: none;
   line-height: 14px;
   /* For IE 8 compatibility */
-  padding: 8px 0 12px;
+  padding: 4px 0 5px;
   /* For IE 8 compatibility */
   -webkit-appearance: none;
 }
