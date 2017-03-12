@@ -3,7 +3,6 @@ Office 365 / SharePoint Taxonomy Picker built in React and TypeScript
 
 
 ## Supported scenarios
-- SPFx
 - SharePoint Web Part using Script Editor or Content Editor Web Part
 
 ## No Supported scenarios
