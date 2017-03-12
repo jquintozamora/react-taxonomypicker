@@ -1,3 +1,7 @@
 {
-    "vsicons.presets.angular": false
+  "vsicons.presets.angular": false,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/lib": true
+  }
 }
