@@ -5,7 +5,7 @@
         "target": "es5",
         "module": "commonjs",
         "jsx": "react",
-        "declaration": false,
+        "declaration": true,
         "typeRoots": [
             "./node_modules/@types"
         ],

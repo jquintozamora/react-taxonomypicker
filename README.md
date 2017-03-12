@@ -1,6 +1,8 @@
 # react-taxonomypicker
 Office 365 / SharePoint Taxonomy Picker built in React and TypeScript
 
+## Requirements
+- Promise - be sure it has been polyfilled for IE.
 
 ## Supported scenarios
 - SharePoint Web Part using Script Editor or Content Editor Web Part
