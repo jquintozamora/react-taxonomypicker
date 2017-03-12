@@ -1,11 +1,11 @@
 {
     "compilerOptions": {
+        "declaration": true,
         "outDir": "./dist/",
         "sourceMap": true,
         "target": "es5",
         "module": "commonjs",
         "jsx": "react",
-        "declaration": true,
         "typeRoots": [
             "./node_modules/@types"
         ],
