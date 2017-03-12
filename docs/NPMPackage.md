@@ -11,3 +11,4 @@
 - https://github.com/kriasoft/react-component-starter
 - https://github.com/survivejs/react-component-boilerplate
 - https://github.com/dantrain/react-stonecutter
+- https://github.com/basarat/ts-npm-module

@@ -5,5 +5,5 @@ interface ITaxonomyPickerState {
     disabled: boolean;
     termSetCount: number;
     asyncLoad: boolean;
-};
+}
 export default ITaxonomyPickerState;

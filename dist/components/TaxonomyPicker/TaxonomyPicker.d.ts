@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import * as React from "react";
-import { ITaxonomyPickerProps } from "./ITaxonomyPickerProps";
-import { ITaxonomyPickerState } from "./ITaxonomyPickerState";
+import ITaxonomyPickerProps from "./ITaxonomyPickerProps";
+import ITaxonomyPickerState from "./ITaxonomyPickerState";
 declare class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPickerState> {
     static defaultProps: ITaxonomyPickerProps;
     constructor(props: any, context: any);

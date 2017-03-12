@@ -5,7 +5,7 @@
   "main": "dist/React.TaxonomyPicker.js",
   "module": "src/index.tsx",
   "style": "dist/React.TaxonomyPicker.css",
-  "types": "dist/components/TaxonomyPicker/TaxonomyPicker.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "prebuild": "npm install",
     "build": "set NODE_ENV=production && webpack --progress --config ./webpack/webpack.config.prod.js",
@@ -35,7 +35,8 @@
   },
   "homepage": "https://github.com/jquintozamora/react-taxonomypicker#readme",
   "dependencies": {
-    "react-select": "^1.0.0-rc.3"
+    "react-select": "^1.0.0-rc.3",
+    "@types/react-select": "^1.0.42"
   },
   "peerDependencies": {
     "react": ">=15.0.0",
@@ -45,10 +46,8 @@
     "@types/es6-promise": "0.0.32",
     "@types/node": "^7.0.5",
     "@types/react": "^15.0.12",
-    "@types/react-select": "^1.0.42",
     "@types/sharepoint": "^2013.1.2",
     "autoprefixer": "^6.7.5",
-    "awesome-typescript-loader": "^3.0.8",
     "css-loader": "^0.26.2",
     "extract-text-webpack-plugin": "^2.0.0",
     "path": "^0.12.7",
@@ -61,6 +60,7 @@
     "source-map-loader": "^0.1.6",
     "style-loader": "^0.13.2",
     "stylelint": "^7.9.0",
+    "ts-loader": "^2.0.1",
     "tslint": "^4.4.2",
     "tslint-react": "^2.4.0",
     "typescript": "^2.2.1",
