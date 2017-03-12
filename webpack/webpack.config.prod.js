@@ -143,19 +143,6 @@ module.exports = {
                                 camelCase: true,
                                 localIdentName: '[name]_[local]_[hash:base64:5]',
                                 minimize: true
-                            },
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: () => ([
-                                    require("postcss-import")(),
-                                    require("postcss-nesting")(),
-                                    require("postcss-custom-properties")(),
-                                    require("autoprefixer")({
-                                        browsers: ['last 2 versions', 'ie >= 9']
-                                    })
-                                ])
                             }
                         }
                     ]

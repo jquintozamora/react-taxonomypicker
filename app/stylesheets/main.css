@@ -42,12 +42,10 @@
 /**
  * 4. BASE
  */
-@import '4_Base/_base.foundation.css';
 
 /**
  * 5. OBJECTS
  */
-@import '5_Objects/_objects.wrappers.css';
 @import '5_Objects/_objects.reactSelect.css';
 
 
@@ -57,11 +55,9 @@
  *  NOTE: On this project, we decided to use CSS-Modules for components,
  *        Then, every React component will have Component.module.css under its folder
  */
- @import '6_Components/_components.NewsletterTool.css';
 
 
 /**
  * 7. TRUMPS
  */
 @import '7_Trumps/_trumps.utilities.css';
-@import '7_Trumps/_trumps.SPFixes.css';

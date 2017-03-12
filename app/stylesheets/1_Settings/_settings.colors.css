@@ -6,10 +6,6 @@
   * Primary colors
   */
 :root {
-  --schindlerRed: #db0000;
-  --schindlerGrey: #f4f4f4;
-  --schindlerDarkGrey: #666666;
-
   --bodyBackground: #e5e5e5;
   --newsImageBackground: #ebebeb;
 }

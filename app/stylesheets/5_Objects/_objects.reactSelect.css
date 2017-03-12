@@ -240,7 +240,7 @@
 }
 
 .Select--multi .Select-multi-value-wrapper {
-  display: inline-block;
+  display: inline-table;
 }
 
 .Select .Select-aria-only {
