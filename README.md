@@ -11,6 +11,21 @@ Office 365 / SharePoint Taxonomy Picker built in React and TypeScript
 - SharePoint App (Provider-hosted app)
 - Other environment not using SP.js (JSOM)
 
+## Done
+- Expose as a Module / Global / UMD library
+- Upload to npm
+- Create ES6 sample application for usage
+- Create TypeScript sample application for usage
+- Create types and include them with the npm package
+
+## TODOs
+- Create types to allow people include with @types
+- Add logic to disable Mock API and enable Data input when not SP or Taxonomy detected
+- Create SPFx webpart sample for usage
+- Expose more functions for handlers
+- Create and Expose property to disable Async / Synch detection
+- Create and Expose properties for custom styles
+
 
 ## License
 MIT License
