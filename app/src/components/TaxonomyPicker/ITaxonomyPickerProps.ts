@@ -1,4 +1,4 @@
-interface  ITaxonomyPickerProps {
+export interface  ITaxonomyPickerProps {
     displayName?: string;
     name: string;
     multi: boolean;
@@ -6,4 +6,3 @@ interface  ITaxonomyPickerProps {
     termSetName: string;
     termSetCountMax?: number;
 };
-export default ITaxonomyPickerProps;

@@ -1,4 +1,4 @@
-interface ITaxonomyPickerState {
+export interface ITaxonomyPickerState {
     errors: string[];
     options: any[];
     value: any;
@@ -6,4 +6,3 @@ interface ITaxonomyPickerState {
     termSetCount: number;
     asyncLoad: boolean;
 }
-export default ITaxonomyPickerState;
