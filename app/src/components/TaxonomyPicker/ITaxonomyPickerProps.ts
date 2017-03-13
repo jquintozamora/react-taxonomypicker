@@ -1,6 +1,6 @@
-import { Option } from "react-select";
+import { Option, ReactSelectProps } from "react-select";
 
-export interface ITaxonomyPickerProps {
+export interface ITaxonomyPickerProps extends ReactSelectProps {
 
     /**
      * The internal name of the Taxonomy Picker (nothing to do with TermSet name).

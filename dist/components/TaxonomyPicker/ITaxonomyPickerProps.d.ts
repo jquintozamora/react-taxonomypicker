@@ -1,5 +1,5 @@
-import { Option } from "react-select";
-export interface ITaxonomyPickerProps {
+import { Option, ReactSelectProps } from "react-select";
+export interface ITaxonomyPickerProps extends ReactSelectProps {
     name: string;
     multi: boolean;
     displayName?: string;

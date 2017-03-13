@@ -86,6 +86,7 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
         if (async) {
             return (
                 <Select.Async
+                    {...this.props}
                     isLoading={!options}
                     backspaceRemoves={false}
                     name={name}
@@ -103,6 +104,7 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
         } else {
             return (
                 <Select
+                    {...this.props}
                     isLoading={!options}
                     backspaceRemoves={false}
                     name={name}
