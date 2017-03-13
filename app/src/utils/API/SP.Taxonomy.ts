@@ -77,11 +77,8 @@ export default class TaxonomyAPI {
                                 const isAvailableForTagging: boolean = showOnlyAdvailableForTag ? currentTerm.get_isAvailableForTagging() : true;
                                 if (isAvailableForTagging) {
                                     const termObj: any = {
-                                        guid: currentTerm.get_id().toString(),
                                         label: currentTerm.get_name(),
-                                        name: currentTerm.get_name(),
-                                        path: currentTerm.get_pathOfTerm(),
-                                        value: currentTerm.get_name()
+                                        value: currentTerm.get_id().toString()
                                     };
                                     items = [...items, termObj];
                                 }
@@ -104,6 +101,10 @@ export default class TaxonomyAPI {
      */
     public static getSearchTermsByText(termSetGuid: string, termSetName: string, keyword: string, resultCollectionSize: number = 10, showOnlyAdvailableForTag: boolean = true) {
         return new Promise((resolve, reject) => {
+            if (keyword === "") {
+                resolve([]);
+                return;
+            }
             SP.SOD.executeFunc("sp.js", "SP.ClientContext", () => {
                 SP.SOD.registerSod("sp.taxonomy.js", SP.Utilities.Utility.getLayoutsPageUrl("sp.taxonomy.js"));
                 SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", () => {
@@ -128,11 +129,8 @@ export default class TaxonomyAPI {
                                 const isAvailableForTagging: boolean = showOnlyAdvailableForTag ? currentTerm.get_isAvailableForTagging() : true;
                                 if (isAvailableForTagging) {
                                     const termObj: any = {
-                                        guid: currentTerm.get_id().toString(),
                                         label: currentTerm.get_name(),
-                                        name: currentTerm.get_name(),
-                                        path: currentTerm.get_pathOfTerm(),
-                                        value: currentTerm.get_name()
+                                        value: currentTerm.get_id().toString()
                                     };
                                     items = [...items, termObj];
                                 }

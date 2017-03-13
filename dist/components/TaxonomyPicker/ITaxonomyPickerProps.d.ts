@@ -1,8 +1,19 @@
+import { Option } from "react-select";
 export interface ITaxonomyPickerProps {
-    displayName?: string;
     name: string;
     multi: boolean;
-    termSetGuid: string;
-    termSetName: string;
-    termSetCountMax?: number;
+    displayName?: string;
+    termSetGuid?: string;
+    termSetName?: string;
+    termSetCountMaxSwapToAsync?: number;
+    termSetCountCacheExpiresMin?: number;
+    termSetAllTermsCacheExpiresMin?: number;
+    defaultOptions?: ITaxonomyValue[] | Option[];
+    defaultValue?: ITaxonomyValue | ITaxonomyValue[] | Option | Option[] | string | string[] | number | number[] | boolean;
+    placeholder?: string;
+    onPickerChange?: (taxonomyPickerName: string, newValue: ITaxonomyValue | ITaxonomyValue[] | Option | Option[] | string | string[] | number | number[] | boolean) => void;
+}
+export interface ITaxonomyValue {
+    label: string;
+    value: string;
 }

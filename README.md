@@ -10,6 +10,7 @@ Office 365 / SharePoint Taxonomy Picker built in React and TypeScript
 ## No Supported scenarios
 - SharePoint App (Provider-hosted app)
 - Other environment not using SP.js (JSOM)
+- Add new terms to the Taxonomy Store (specific for get terms by now)
 
 ## Done
 - Expose as a Module / Global / UMD library
