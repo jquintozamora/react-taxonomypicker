@@ -132,7 +132,9 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
 
     private _handleSelectChange = (value: any) => {
         this.setState({ value });
-        this.props.onPickerChange(this.props.name, value);
+        if (typeof this.props.onPickerChange === "function") {
+            this.props.onPickerChange(this.props.name, value);
+        }
     }
 
     private getSearchTerms(input: string) {
