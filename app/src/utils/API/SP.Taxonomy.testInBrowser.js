@@ -24,7 +24,7 @@
     var termStore = session.getDefaultSiteCollectionTermStore();
     var termSet = termStore.getTermSet(new SP.Guid(termSetGuid));
     var terms = termSet.getAllTerms();
-    ctx.load(terms, 'Include(TermsCount)');
+    ctx.load(terms, 'Include()');
     ctx.executeQueryAsync(
         function () {
             console.log('TermSet count: ');

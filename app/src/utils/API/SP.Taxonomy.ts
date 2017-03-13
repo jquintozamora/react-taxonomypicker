@@ -1,4 +1,5 @@
 import { Cache } from "./../Cache";
+import { Utils } from "./../Utils";
 
 export default class TaxonomyAPI {
 
@@ -19,7 +20,7 @@ export default class TaxonomyAPI {
             }
             // If Term Set count is not in the cache, do the query using JSOM
             SP.SOD.executeFunc("sp.js", "SP.ClientContext", () => {
-                SP.SOD.registerSod("sp.taxonomy.js", SP.Utilities.Utility.getLayoutsPageUrl("sp.taxonomy.js"));
+                SP.SOD.registerSod("sp.taxonomy.js", Utils.getLayoutsPageUrl("sp.taxonomy.js"));
                 SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", () => {
                     const ctx = SP.ClientContext.get_current();
                     const session = SP.Taxonomy.TaxonomySession.getTaxonomySession(ctx);
@@ -60,7 +61,7 @@ export default class TaxonomyAPI {
             }
             // If Term Set data is not in the cache, do the query using JSOM
             SP.SOD.executeFunc("sp.js", "SP.ClientContext", () => {
-                SP.SOD.registerSod("sp.taxonomy.js", SP.Utilities.Utility.getLayoutsPageUrl("sp.taxonomy.js"));
+                SP.SOD.registerSod("sp.taxonomy.js", Utils.getLayoutsPageUrl("sp.taxonomy.js"));
                 SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", () => {
                     const ctx = SP.ClientContext.get_current();
                     const taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(ctx);
@@ -106,7 +107,7 @@ export default class TaxonomyAPI {
                 return;
             }
             SP.SOD.executeFunc("sp.js", "SP.ClientContext", () => {
-                SP.SOD.registerSod("sp.taxonomy.js", SP.Utilities.Utility.getLayoutsPageUrl("sp.taxonomy.js"));
+                SP.SOD.registerSod("sp.taxonomy.js", Utils.getLayoutsPageUrl("sp.taxonomy.js"));
                 SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", () => {
                     const ctx = SP.ClientContext.get_current();
                     const taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(ctx);
