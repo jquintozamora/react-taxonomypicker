@@ -27,8 +27,9 @@ Initially built for use in Office 365 / SharePoint.
 ## Scenarios supported
 - SharePoint Web Part using Script Editor or Content Editor Web Part
 - SharePoint Framework Web Part (SPFx)
-- Consume it from [ES6 project](https://github.com/jquintozamora/react-taxonomypicker-consume-es6)
-- Consume it from [TypeScript project](https://github.com/jquintozamora/react-taxonomypicker-consume-typescript)
+- [ES6 project](https://github.com/jquintozamora/react-taxonomypicker-consume-es6) consumer sample
+- [TypeScript project](https://github.com/jquintozamora/react-taxonomypicker-consume-typescript) consumer sample
+- [SPFx project](https://github.com/jquintozamora/spfx-react-taxonomypicker) consumer sample
 
 ## Scenarios not supported
 - SharePoint Provider-hosted app
