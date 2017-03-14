@@ -27,8 +27,8 @@ Initially built for use in Office 365 / SharePoint.
 ## Scenarios supported
 - SharePoint Web Part using Script Editor or Content Editor Web Part
 - SharePoint Framework Web Part (SPFx)
-- Consume it from ES6 project
-- Consume it from TypeScript project
+- Consume it from [ES6 project](https://github.com/jquintozamora/react-taxonomypicker-consume-es6)
+- Consume it from [TypeScript project](https://github.com/jquintozamora/react-taxonomypicker-consume-typescript)
 
 ## Scenarios not supported
 - SharePoint Provider-hosted app
@@ -52,29 +52,29 @@ import "react-taxonomypicker/dist/React.TaxonomyPicker.css";
 ### 3. Usage
 #### Mock / Local mode
 Don't configure termSetGuid and load the options from defaultOptions object.
-```jsx
+```js
 <TaxonomyPicker
   name="Language"
   displayName="Language"
-  defaultOptions: [
+  defaultOptions={[
     { label: "English", value: "f50249b6-310d-43b6-aaa6-f0cb46d851bf" },
     { label: "Spanish", value: "237ca323-1ed8-4199-a49b-a9f7ce4256bf" },
     { label: "German", value: "44024c7e-f738-4755-90e1-15866327c806" },
     { label: "Italian", value: "65f67491-bdca-491a-84fa-f6fd913f40fa" },
-  ],
+  ]}
   multi={true}
 />
 ```
 
 #### SharePoint environment mode
 Configure termSetGuid with the desired term set
-```jsx
+```js
 <TaxonomyPicker
   name="Language"
   displayName="Language"
   termSetGuid="26ebf149-101a-4996-9df2-8179a537350d"
   termSetName="Language"
-  termSetCountMaxSwapToAsync: 100,
+  termSetCountMaxSwapToAsync={100}
   multi={true}
 />
 ```
@@ -83,16 +83,17 @@ Configure termSetGuid with the desired term set
 ## Done
 - Expose as a Module / Global / UMD library
 - Upload to npm
-- Create ES6 sample application for usage
-- Create TypeScript sample application for usage
+- Create [ES6 sample application](https://github.com/jquintozamora/react-taxonomypicker-consume-es6) for usage
+- Create [TypeScript sample application](https://github.com/jquintozamora/react-taxonomypicker-consume-typescript) for usage
 - Create types and include them with the npm package
+- onPickerChange event handler exposed
+- react-select properties exposed (extends them)
+- termSetCountMaxSwapToAsync property exposed to choose between Sync / Async modes
+- defaultOptions array exposed to enable input mock data when no termSetGuid configured
 
 ## TODOs
 - Create types to allow people include with @types
-- Add logic to disable Mock API and enable Data input when not SP or Taxonomy detected
 - Create SPFx webpart sample for usage
-- Expose more functions for handlers
-- Create and Expose property to disable Async / Synch detection
 - Create and Expose properties for custom styles
 
 
