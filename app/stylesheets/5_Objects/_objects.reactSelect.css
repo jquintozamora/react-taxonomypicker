@@ -389,6 +389,7 @@
   width: 20px;
   height: 100%;
   float: left;
+  line-height: 24px;
 }
 
 .Select--multi .Select-value-icon:hover,
