@@ -20,6 +20,7 @@ export default class TaxonomyAPI {
             }
             // If Term Set count is not in the cache, do the query using JSOM
             SP.SOD.executeFunc("sp.js", "SP.ClientContext", () => {
+                // Utils.getLayoutsPageUrl replaces SP.Utilities.Utility.getLayoutsPageUrl
                 SP.SOD.registerSod("sp.taxonomy.js", Utils.getLayoutsPageUrl("sp.taxonomy.js"));
                 SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", () => {
                     const ctx = SP.ClientContext.get_current();
@@ -35,7 +36,6 @@ export default class TaxonomyAPI {
                             resolve(termCount);
                         },
                         (sender, args) => {
-                            // console.log('Error: ' + args.get_message());
                             reject("Error in getTermSetCount. Message: " + args.get_message());
                         }
                     );
@@ -61,6 +61,7 @@ export default class TaxonomyAPI {
             }
             // If Term Set data is not in the cache, do the query using JSOM
             SP.SOD.executeFunc("sp.js", "SP.ClientContext", () => {
+                // Utils.getLayoutsPageUrl replaces SP.Utilities.Utility.getLayoutsPageUrl
                 SP.SOD.registerSod("sp.taxonomy.js", Utils.getLayoutsPageUrl("sp.taxonomy.js"));
                 SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", () => {
                     const ctx = SP.ClientContext.get_current();
@@ -107,6 +108,7 @@ export default class TaxonomyAPI {
                 return;
             }
             SP.SOD.executeFunc("sp.js", "SP.ClientContext", () => {
+                // Utils.getLayoutsPageUrl replaces SP.Utilities.Utility.getLayoutsPageUrl
                 SP.SOD.registerSod("sp.taxonomy.js", Utils.getLayoutsPageUrl("sp.taxonomy.js"));
                 SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", () => {
                     const ctx = SP.ClientContext.get_current();
