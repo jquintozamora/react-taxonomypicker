@@ -14,7 +14,6 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
     public static defaultProps: ITaxonomyPickerProps = {
         name: "Taxononomy_Picker_Name",
         multi: true,
-        displayName: "Field Name",
         termSetGuid: null,
         termSetName: null,
         termSetCountMaxSwapToAsync: 300,
@@ -86,7 +85,7 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
         if (!(typeof displayName === "string" && displayName.length > 0)) {
             return null;
         } else {
-            return this.props.displayName != null ? <label className={styles.label} htmlFor={this.props.name}>{this.props.displayName}</label>;
+            return (<label className={styles.label} htmlFor={this.props.name}>{this.props.displayName}</label>);
         }
     }
 
