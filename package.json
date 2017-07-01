@@ -36,7 +36,7 @@
   "homepage": "https://github.com/jquintozamora/react-taxonomypicker#readme",
   "dependencies": {
     "react-select": "1.0.0-rc.5",
-    "@types/react-select": "1.0.48"
+    "@types/react-select": "1.0.42"
   },
   "peerDependencies": {
     "react": ">=15.0.0",
@@ -45,8 +45,9 @@
   "devDependencies": {
     "@types/es6-promise": "0.0.32",
     "@types/node": "8.0.7",
-    "@types/react": "15.0.34",
-    "@types/sharepoint": "2013.1.9",
+    "@types/react": "0.14.46",
+    "@types/react-dom": "0.14.18",
+    "@types/sharepoint": "2013.1.2",
     "autoprefixer": "7.1.1",
     "css-loader": "0.28.4",
     "extract-text-webpack-plugin": "2.1.2",
@@ -55,15 +56,15 @@
     "postcss-import": "10.0.0",
     "postcss-loader": "2.0.6",
     "postcss-nesting": "4.0.1",
-    "react": "15.6.1",
-    "react-dom": "15.6.1",
+    "react": "15.4.2",
+    "react-dom": "15.4.2",
     "source-map-loader": "0.2.1",
     "style-loader": "0.18.2",
     "stylelint": "7.12.0",
     "ts-loader": "2.2.1",
     "tslint": "5.4.3",
     "tslint-react": "3.0.0",
-    "typescript": "2.4.1",
+    "typescript": "2.2.2",
     "webpack": "3.0.0",
     "webpack-visualizer-plugin": "0.1.11"
   }

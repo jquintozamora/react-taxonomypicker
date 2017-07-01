@@ -46,23 +46,23 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
             TaxonomyAPI.getTermSetCount(termSetGuid, termSetName)
                 .then((termSetCount: number) => {
                     if (termSetCount > termSetCountMaxSwapToAsync) {
-                        this.setState({ asyncLoad: true, termSetCount });
+                        this.setState({ ...this.state, asyncLoad: true, termSetCount });
                     } else {
                         this.getAllTerms()
                             .then((options: any) => {
-                                this.setState({ options, termSetCount });
+                                this.setState({ ...this.state, options, termSetCount });
                             })
                             .catch((reason: any) => {
-                                this.setState({ errors: [...this.state.errors, reason] });
+                                this.setState({ ...this.state, errors: [...this.state.errors, reason] });
                             });
                     }
                 })
                 .catch((reason: any) => {
-                    this.setState({ errors: [...this.state.errors, reason] });
+                    this.setState({ ...this.state, errors: [...this.state.errors, reason] });
                 });
         } else {
             if (defaultOptions !== null) {
-                this.setState({ options: defaultOptions, termSetCount: defaultOptions.length });
+                this.setState({ ...this.state, options: defaultOptions, termSetCount: defaultOptions.length });
             }
         }
 
@@ -133,16 +133,16 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
     private _asyncLoadOptions = (input) => {
         return this.getSearchTerms(input)
             .then((options: any) => {
-                this.setState({ options });
+                this.setState({ ...this.state, options });
                 return { options };
             })
             .catch((reason: any) => {
-                this.setState({ errors: [...this.state.errors, reason] });
+                this.setState({ ...this.state, errors: [...this.state.errors, reason] });
             });
     }
 
     private _handleSelectChange = (value: any) => {
-        this.setState({ value });
+        this.setState({ ...this.state, value });
         if (typeof this.props.onPickerChange === "function") {
             this.props.onPickerChange(this.props.name, value);
         }
