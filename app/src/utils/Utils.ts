@@ -14,6 +14,7 @@ export class Utils {
     return baseUrl;
   }
 
+
   /*
    * Function to get Current Site Url
    * Samples:

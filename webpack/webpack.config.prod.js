@@ -8,7 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     devtool: 'source-map',
     entry: {
-        'React.TaxonomyPicker': './app/src/index.tsx'
+        'React.TaxonomyPicker': './app/src/index.package.ts'
     },
     context: resolve(__dirname, '../'),
     output: {
@@ -99,6 +99,7 @@ module.exports = {
                         {
                             loader: 'ts-loader',
                             options: {
+                                configFileName: "tsconfig.package.json"
                                 // transpileOnly: true,
                                 // logInfoToStdOut: true
                             }

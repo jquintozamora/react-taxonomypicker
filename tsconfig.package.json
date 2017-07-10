@@ -2,7 +2,8 @@
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
-        "declaration": false,
+        "declaration": true,
+        "outDir": "./",
         "noImplicitAny": false,
         "suppressImplicitAnyIndexErrors": true,
         "removeComments": true,
@@ -17,8 +18,23 @@
             "node",
             "react",
             "react-dom",
-            "es6-promise",
-            "sharepoint"
+            "sharepoint",
+            "es6-promise"
         ]
-    }
+    },
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./app/src/index.package.ts",
+        "./app/src/components/TaxonomyPicker/TaxonomyPicker.tsx"
+    ],
+    "include": [
+        "app/src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
 }

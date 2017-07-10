@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Select from "react-select";
-import TaxonomyAPI from "../../utils/MockAPI/SP.Taxonomy";
+import TaxonomyAPI from "../../api/SP.Taxonomy";
 import { ITaxonomyPickerProps } from "./ITaxonomyPickerProps";
 import { ITaxonomyPickerState } from "./ITaxonomyPickerState";
 
