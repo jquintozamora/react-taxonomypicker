@@ -7,6 +7,8 @@ import * as ReactDOM from "react-dom";
 const { AppContainer } = require("react-hot-loader");
 // tslint:enable
 
+import "../stylesheets/main.css";
+
 /*
   Main App Container
  */
