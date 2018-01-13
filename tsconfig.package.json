@@ -32,7 +32,7 @@
     "!./node_modules/**/*.ts"
   ],
   "files": [
-    "./app/src/index.package.ts",
+    "./app/src/index.ts",
     "./app/src/components/TaxonomyPicker/TaxonomyPicker.tsx"
   ],
   "include": [

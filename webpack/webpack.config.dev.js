@@ -23,7 +23,7 @@ module.exports = {
             // only- means to only hot reload for successful updates
             'webpack/hot/only-dev-server',
             // Our app main entry
-            './app/src/index.tsx'
+            './app/src/index.dev.tsx'
         ]
     },
     output: {
