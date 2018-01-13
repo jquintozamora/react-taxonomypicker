@@ -8,7 +8,7 @@ for (let i = 0; i <= numberOfItems; i++) {
         guid: newGuid(),
         label: tempLabel,
         name: tempLabel,
-        path: tempLabel,
+        path: "path" + i,
         value: tempLabel,
     };
     items = [...items, termObj];

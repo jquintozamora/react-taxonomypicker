@@ -12,8 +12,10 @@ export interface ITaxonomyPickerProps extends ReactSelectProps {
     defaultValue?: ITaxonomyValue | ITaxonomyValue[] | Option | Option[] | string | string[] | number | number[] | boolean;
     placeholder?: string;
     onPickerChange?: (taxonomyPickerName: string, newValue: ITaxonomyValue | ITaxonomyValue[] | Option | Option[] | string | string[] | number | number[] | boolean) => void;
+    showPath?: boolean;
 }
 export interface ITaxonomyValue {
     label: string;
     value: string;
+    path: string;
 }

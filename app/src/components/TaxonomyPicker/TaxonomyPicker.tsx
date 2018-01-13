@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Select from "react-select";
 import TaxonomyAPI from "../../api/SP.Taxonomy";
-import { ITaxonomyPickerProps } from "./ITaxonomyPickerProps";
+import { ITaxonomyPickerProps, ITaxonomyValue } from "./ITaxonomyPickerProps";
 import { ITaxonomyPickerState } from "./ITaxonomyPickerState";
 
 /* tslint:disable:no-var-requires */
@@ -20,7 +20,8 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
         defaultOptions: null,
         defaultValue: null,
         onPickerChange: null,
-        placeholder: "Type here to search..."
+        placeholder: "Type here to search...",
+        showPath: false
     };
 
     constructor(props: any, context: any) {
@@ -110,8 +111,31 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
             : <label className={styles.label} htmlFor={name}>{displayName}</label>;
     }
 
+    private filterOption = (option, filter) => {
+        let returned = false;
+        const filterBy = this.props.showPath ? ["value", "label", "path"] : ["value", "label"]
+        filterBy.forEach((p) => {
+            if (option[p].toLowerCase().includes(filter)) {
+                returned = true;
+                return;
+            }
+        });
+        return returned;
+    }
+
+    private renderOption = (option) => {
+        return (
+            <div
+                title={option.label}
+            >
+                {this.props.showPath ? option.path ? <span>{option.path} > </span> : null : null}
+                {option.label}
+            </div>
+        );
+    }
+
     private _getSelectControl(async: boolean, minimumInput?: number) {
-        const { placeholder, name, multi } = this.props;
+        const { placeholder, name, multi, showPath } = this.props;
         const { options, value } = this.state;
         return async
             ? (
@@ -129,6 +153,8 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
                     onChange={this._handleSelectChange}
                     options={options}
                     value={value}
+                    optionRenderer={this.renderOption}
+                    filterOption={this.filterOption}
                 />
             )
             : (
@@ -144,6 +170,8 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
                     onChange={this._handleSelectChange}
                     options={options}
                     value={value}
+                    optionRenderer={this.renderOption}
+                    filterOption={this.filterOption}
                 />
             );
     }

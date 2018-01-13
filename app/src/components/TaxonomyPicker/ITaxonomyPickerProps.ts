@@ -70,6 +70,11 @@ export interface ITaxonomyPickerProps extends ReactSelectProps {
      * Function (event handler which triggers when the selected value/s change/s.
      */
     onPickerChange?: (taxonomyPickerName: string, newValue: ITaxonomyValue | ITaxonomyValue[] | Option | Option[] | string | string[] | number | number[] | boolean) => void;
+
+    /**
+     * Show term path ?
+     */
+    showPath?: boolean;
 }
 
 /**
@@ -85,4 +90,9 @@ export interface ITaxonomyValue {
      * The GUID for a Term.
      */
     value: string;
+
+    /**
+     * The Path for a Term.
+     */
+    path: string;
 }

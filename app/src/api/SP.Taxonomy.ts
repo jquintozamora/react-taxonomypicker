@@ -80,7 +80,7 @@ export default class TaxonomyAPI {
                                         const termObj: any = {
                                             label: currentTerm.get_name(),
                                             value: currentTerm.get_id().toString(),
-                                            termPath: currentTerm.get_pathOfTerm()
+                                            path: currentTerm.get_pathOfTerm()
                                         };
                                         items = [...items, termObj];
                                     }
@@ -133,7 +133,7 @@ export default class TaxonomyAPI {
                                         const termObj: any = {
                                             label: currentTerm.get_name(),
                                             value: currentTerm.get_id().toString(),
-                                            termPath: currentTerm.get_pathOfTerm()
+                                            path: currentTerm.get_pathOfTerm()
                                         };
                                         items = [...items, termObj];
                                     }
