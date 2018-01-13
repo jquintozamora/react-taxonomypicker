@@ -7,6 +7,12 @@
         "suppressImplicitAnyIndexErrors": true,
         "removeComments": true,
         "noLib": false,
+        "lib": [
+            "dom",
+            "es5",
+            "scripthost",
+            "es2015.promise"
+        ],
         "preserveConstEnums": true,
         "sourceMap": true,
         "jsx": "react",
@@ -17,7 +23,6 @@
             "node",
             "react",
             "react-dom",
-            "es6-promise",
             "sharepoint"
         ]
     }

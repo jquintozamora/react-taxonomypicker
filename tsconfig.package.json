@@ -1,40 +1,45 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "declaration": true,
-        "outDir": "./",
-        "noImplicitAny": false,
-        "suppressImplicitAnyIndexErrors": true,
-        "removeComments": true,
-        "noLib": false,
-        "preserveConstEnums": true,
-        "sourceMap": true,
-        "jsx": "react",
-        "typeRoots": [
-            "./node_modules/@types"
-        ],
-        "types": [
-            "node",
-            "react",
-            "react-dom",
-            "sharepoint",
-            "es6-promise"
-        ]
-    },
-    "filesGlob": [
-        "./**/*.ts",
-        "!./node_modules/**/*.ts"
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./",
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "removeComments": true,
+    "noLib": false,
+    "lib": [
+      "dom",
+      "es5",
+      "scripthost",
+      "es2015.promise"
     ],
-    "files": [
-        "./app/src/index.package.ts",
-        "./app/src/components/TaxonomyPicker/TaxonomyPicker.tsx"
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "jsx": "react",
+    "typeRoots": [
+      "./node_modules/@types"
     ],
-    "include": [
-        "app/src/**/*"
-    ],
-    "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "sharepoint"
     ]
+  },
+  "filesGlob": [
+    "./**/*.ts",
+    "!./node_modules/**/*.ts"
+  ],
+  "files": [
+    "./app/src/index.package.ts",
+    "./app/src/components/TaxonomyPicker/TaxonomyPicker.tsx"
+  ],
+  "include": [
+    "app/src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }

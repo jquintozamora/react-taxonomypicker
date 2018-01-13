@@ -2,7 +2,6 @@ import { Cache } from "../utils/Cache";
 import { Utils } from "../utils/Utils";
 
 export default class TaxonomyAPI {
-
     /*
      * Function to get the number of terms of a given taxonomy Term Set
      * It will be used to decide if the TaxonomyPicker control renders as async or async
@@ -14,32 +13,32 @@ export default class TaxonomyAPI {
             const termSetCountCacheKey: string = "TermSetCount_" + termSetName + termSetGuid;
             const termSetCountCache: any = Cache.getStoredDataByKey(termSetCountCacheKey);
             // Try get Term Set count from the cache
-            if (termSetCountCache) {
-                resolve(termSetCountCache);
-                return;
-            }
+            if (termSetCountCache) { return resolve(termSetCountCache); }
+
             // If Term Set count is not in the cache, do the query using JSOM
             SP.SOD.executeFunc("sp.js", "SP.ClientContext", () => {
                 // Utils.getLayoutsPageUrl replaces SP.Utilities.Utility.getLayoutsPageUrl
                 SP.SOD.registerSod("sp.taxonomy.js", Utils.getLayoutsPageUrl("sp.taxonomy.js"));
-                SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", () => {
-                    const ctx = SP.ClientContext.get_current();
-                    const session = SP.Taxonomy.TaxonomySession.getTaxonomySession(ctx);
-                    const termStore = session.getDefaultSiteCollectionTermStore();
-                    const termSet = termStore.getTermSet(new SP.Guid(termSetGuid));
-                    const terms = termSet.getAllTerms();
-                    ctx.load(terms, "Include()");
-                    ctx.executeQueryAsync(
-                        () => {
-                            const termCount = terms.get_count();
-                            Cache.setStoredDataByKey(termSetCountCacheKey, termCount, termSetCountCacheExpiresMin);
-                            resolve(termCount);
-                        },
-                        (sender, args) => {
-                            reject("Error in getTermSetCount. Message: " + args.get_message());
-                        }
-                    );
-                });
+                SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession",
+                    () => {
+                        const ctx = SP.ClientContext.get_current();
+                        const session = SP.Taxonomy.TaxonomySession.getTaxonomySession(ctx);
+                        const termStore = session.getDefaultSiteCollectionTermStore();
+                        const termSet = termStore.getTermSet(new SP.Guid(termSetGuid));
+                        const terms = termSet.getAllTerms();
+                        ctx.load(terms, "Include()");
+                        ctx.executeQueryAsync(
+                            () => {
+                                const termCount = terms.get_count();
+                                Cache.setStoredDataByKey(termSetCountCacheKey, termCount, termSetCountCacheExpiresMin);
+                                return resolve(termCount);
+                            },
+                            (sender, args) => {
+                                return reject("Error in getTermSetCount. Message: " + args.get_message());
+                            }
+                        );
+                    }
+                );
             });
         });
     }
@@ -54,44 +53,46 @@ export default class TaxonomyAPI {
             const termSetDataCacheExpiresMin: number = 1440;
             const termSetDataCacheKey: string = "TermSetData_" + termSetName + termSetGuid;
             const termSetDataCache: any = Cache.getStoredDataByKey(termSetDataCacheKey);
+
             // Try get Term Set data from the cache
-            if (termSetDataCache) {
-                resolve(termSetDataCache);
-                return;
-            }
+            if (termSetDataCache) { return resolve(termSetDataCache); }
+
             // If Term Set data is not in the cache, do the query using JSOM
             SP.SOD.executeFunc("sp.js", "SP.ClientContext", () => {
                 // Utils.getLayoutsPageUrl replaces SP.Utilities.Utility.getLayoutsPageUrl
                 SP.SOD.registerSod("sp.taxonomy.js", Utils.getLayoutsPageUrl("sp.taxonomy.js"));
-                SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", () => {
-                    const ctx = SP.ClientContext.get_current();
-                    const taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(ctx);
-                    const termStore = taxSession.getDefaultSiteCollectionTermStore();
-                    const termSet = termStore.getTermSet(new SP.Guid(termSetGuid));
-                    const terms = termSet.getAllTerms();
-                    ctx.load(terms, "Include(IsRoot, TermsCount, Id, Name, PathOfTerm, IsAvailableForTagging)");
-                    ctx.executeQueryAsync(
-                        () => {
-                            let items: Array<{}> = [];
-                            const termEnumerator = terms.getEnumerator();
-                            while (termEnumerator.moveNext()) {
-                                const currentTerm: any = termEnumerator.get_current();
-                                const isAvailableForTagging: boolean = showOnlyAdvailableForTag ? currentTerm.get_isAvailableForTagging() : true;
-                                if (isAvailableForTagging) {
-                                    const termObj: any = {
-                                        label: currentTerm.get_name(),
-                                        value: currentTerm.get_id().toString()
-                                    };
-                                    items = [...items, termObj];
+                SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession",
+                    () => {
+                        const ctx = SP.ClientContext.get_current();
+                        const taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(ctx);
+                        const termStore = taxSession.getDefaultSiteCollectionTermStore();
+                        const termSet = termStore.getTermSet(new SP.Guid(termSetGuid));
+                        const terms = termSet.getAllTerms();
+                        ctx.load(terms, "Include(IsRoot, TermsCount, Id, Name, PathOfTerm, IsAvailableForTagging)");
+                        ctx.executeQueryAsync(
+                            () => {
+                                let items: Array<{}> = [];
+                                const termEnumerator = terms.getEnumerator();
+                                while (termEnumerator.moveNext()) {
+                                    const currentTerm: any = termEnumerator.get_current();
+                                    const isAvailableForTagging: boolean = showOnlyAdvailableForTag ? currentTerm.get_isAvailableForTagging() : true;
+                                    if (isAvailableForTagging) {
+                                        const termObj: any = {
+                                            label: currentTerm.get_name(),
+                                            value: currentTerm.get_id().toString(),
+                                            termPath: currentTerm.get_pathOfTerm()
+                                        };
+                                        items = [...items, termObj];
+                                    }
                                 }
-                            }
-                            Cache.setStoredDataByKey(termSetDataCacheKey, items, termSetDataCacheExpiresMin);
-                            resolve(items);
-                        },
-                        (sender, args) => {
-                            reject(args.get_message());
-                        });
-                });
+                                Cache.setStoredDataByKey(termSetDataCacheKey, items, termSetDataCacheExpiresMin);
+                                return resolve(items);
+                            },
+                            (sender, args) => {
+                                return reject(args.get_message());
+                            });
+                    }
+                );
             });
         });
     }
@@ -103,47 +104,47 @@ export default class TaxonomyAPI {
      */
     public static getSearchTermsByText(termSetGuid: string, termSetName: string, keyword: string, resultCollectionSize: number = 10, showOnlyAdvailableForTag: boolean = true) {
         return new Promise((resolve, reject) => {
-            if (keyword === "") {
-                resolve([]);
-                return;
-            }
+            if (keyword === "") { return resolve([]); }
             SP.SOD.executeFunc("sp.js", "SP.ClientContext", () => {
                 // Utils.getLayoutsPageUrl replaces SP.Utilities.Utility.getLayoutsPageUrl
                 SP.SOD.registerSod("sp.taxonomy.js", Utils.getLayoutsPageUrl("sp.taxonomy.js"));
-                SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession", () => {
-                    const ctx = SP.ClientContext.get_current();
-                    const taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(ctx);
-                    const termStore = taxSession.getDefaultSiteCollectionTermStore();
-                    const termSet = termStore.getTermSet(new SP.Guid(termSetGuid));
-                    const lmi = new SP.Taxonomy.LabelMatchInformation(ctx);
-                    lmi.set_termLabel(keyword);
-                    lmi.set_defaultLabelOnly(true);
-                    lmi.set_stringMatchOption(SP.Taxonomy.StringMatchOption.startsWith);
-                    lmi.set_resultCollectionSize(resultCollectionSize);
-                    lmi.set_trimUnavailable(true);
-                    const terms = termSet.getTerms(lmi);
-                    ctx.load(terms, "Include(IsRoot, TermsCount, Id, Name, PathOfTerm, IsAvailableForTagging)");
-                    ctx.executeQueryAsync(
-                        () => {
-                            let items: Array<{}> = [];
-                            const termEnumerator = terms.getEnumerator();
-                            while (termEnumerator.moveNext()) {
-                                const currentTerm: any = termEnumerator.get_current();
-                                const isAvailableForTagging: boolean = showOnlyAdvailableForTag ? currentTerm.get_isAvailableForTagging() : true;
-                                if (isAvailableForTagging) {
-                                    const termObj: any = {
-                                        label: currentTerm.get_name(),
-                                        value: currentTerm.get_id().toString()
-                                    };
-                                    items = [...items, termObj];
+                SP.SOD.executeFunc("sp.taxonomy.js", "SP.Taxonomy.TaxonomySession",
+                    () => {
+                        const ctx = SP.ClientContext.get_current();
+                        const taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(ctx);
+                        const termStore = taxSession.getDefaultSiteCollectionTermStore();
+                        const termSet = termStore.getTermSet(new SP.Guid(termSetGuid));
+                        const lmi = new SP.Taxonomy.LabelMatchInformation(ctx);
+                        lmi.set_termLabel(keyword);
+                        lmi.set_defaultLabelOnly(true);
+                        lmi.set_stringMatchOption(SP.Taxonomy.StringMatchOption.startsWith);
+                        lmi.set_resultCollectionSize(resultCollectionSize);
+                        lmi.set_trimUnavailable(true);
+                        const terms = termSet.getTerms(lmi);
+                        ctx.load(terms, "Include(IsRoot, TermsCount, Id, Name, PathOfTerm, IsAvailableForTagging)");
+                        ctx.executeQueryAsync(
+                            () => {
+                                let items: Array<{}> = [];
+                                const termEnumerator = terms.getEnumerator();
+                                while (termEnumerator.moveNext()) {
+                                    const currentTerm: any = termEnumerator.get_current();
+                                    const isAvailableForTagging: boolean = showOnlyAdvailableForTag ? currentTerm.get_isAvailableForTagging() : true;
+                                    if (isAvailableForTagging) {
+                                        const termObj: any = {
+                                            label: currentTerm.get_name(),
+                                            value: currentTerm.get_id().toString(),
+                                            termPath: currentTerm.get_pathOfTerm()
+                                        };
+                                        items = [...items, termObj];
+                                    }
                                 }
-                            }
-                            resolve(items);
-                        },
-                        (sender, args) => {
-                            reject(args.get_message());
-                        });
-                });
+                                return resolve(items);
+                            },
+                            (sender, args) => {
+                                return reject(args.get_message());
+                            });
+                    }
+                );
             });
         });
     }

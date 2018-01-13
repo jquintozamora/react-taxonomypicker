@@ -8,7 +8,7 @@ declare class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxo
     componentDidMount(): void;
     render(): JSX.Element;
     private _getLabel();
-    private _getSelectControl(async, loadOptions?, minimumInput?);
+    private _getSelectControl(async, minimumInput?);
     private _asyncLoadOptions;
     private _handleSelectChange;
     private getSearchTerms(input);

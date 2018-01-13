@@ -40,7 +40,6 @@ function getTermsCount(termSetGuid: string): number {
 }
 
 export default class TaxonomyAPI {
-
     /*
      * Function to get the number of items of a given taxonomy Term Set
      * It will be used to decide if the TaxonomyPicker control renders as async or async
@@ -63,7 +62,6 @@ export default class TaxonomyAPI {
         });
     }
 
-
     /*
      * Function to search terms in a given taxonomy Term Set
      * It will be used to get all terms when a TaxonomyPicker is Async
@@ -81,5 +79,4 @@ export default class TaxonomyAPI {
             }, delay);
         });
     }
-
 }

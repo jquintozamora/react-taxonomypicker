@@ -9,8 +9,6 @@ const styles: any = require("./TaxonomyPicker.module.css");
 /* tslint:enable:no-var-requires */
 
 class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPickerState> {
-
-    // Default Props values
     public static defaultProps: ITaxonomyPickerProps = {
         name: "Taxononomy_Picker_Name",
         multi: true,
@@ -27,8 +25,6 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
 
     constructor(props: any, context: any) {
         super(props, context);
-
-        // Default State values
         this.state = {
             asyncLoad: false,
             disabled: false,
@@ -41,59 +37,84 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
 
     // Initial Async Loading here. Only in Container Components
     public componentDidMount() {
-        const { termSetGuid, termSetName, termSetCountMaxSwapToAsync, defaultOptions } = this.props;
-        if (termSetGuid !== null) {
-            TaxonomyAPI.getTermSetCount(termSetGuid, termSetName)
+        const {
+            termSetGuid,
+            termSetName,
+            termSetCountMaxSwapToAsync,
+            defaultOptions
+         } = this.props;
+
+        termSetGuid !== null
+            ? TaxonomyAPI.getTermSetCount(termSetGuid, termSetName)
                 .then((termSetCount: number) => {
-                    if (termSetCount > termSetCountMaxSwapToAsync) {
-                        this.setState({ ...this.state, asyncLoad: true, termSetCount });
-                    } else {
-                        this.getAllTerms()
+                    termSetCount > termSetCountMaxSwapToAsync
+                        ? this.setState({
+                            ...this.state,
+                            asyncLoad: true,
+                            termSetCount
+                        })
+                        : this.getAllTerms()
                             .then((options: any) => {
-                                this.setState({ ...this.state, options, termSetCount });
+                                this.setState({
+                                    ...this.state,
+                                    options,
+                                    termSetCount
+                                });
                             })
                             .catch((reason: any) => {
-                                this.setState({ ...this.state, errors: [...this.state.errors, reason] });
+                                this.setState({
+                                    ...this.state,
+                                    errors: [...this.state.errors, reason]
+                                });
                             });
-                    }
                 })
                 .catch((reason: any) => {
-                    this.setState({ ...this.state, errors: [...this.state.errors, reason] });
+                    this.setState({
+                        ...this.state,
+                        errors: [...this.state.errors, reason]
+                    });
+                })
+            : defaultOptions !== null
+                ? this.setState({
+                    ...this.state,
+                    options: defaultOptions,
+                    termSetCount: defaultOptions.length
+                })
+                : this.setState({
+                    ...this.state,
+                    errors: [...this.state.errors, "Please choose termSetId or provide defaultOptions."]
                 });
-        } else {
-            if (defaultOptions !== null) {
-                this.setState({ ...this.state, options: defaultOptions, termSetCount: defaultOptions.length });
-            }
-        }
 
     }
 
     public render() {
         const { asyncLoad } = this.state;
         return (
-            <div key={this.props.name} className={styles.container} name={this.props.name}>
+            <div
+                key={this.props.name}
+                className={styles.container}
+                title={this.props.name}
+            >
                 {this._getLabel()}
-                {this._getSelectControl(asyncLoad, this._asyncLoadOptions, 1)}
+                {this._getSelectControl(asyncLoad, 1)}
                 {this.state.errors.length > 0 ? this.renderErrorMessage() : null}
             </div>
         );
     }
 
     private _getLabel() {
-        const { displayName } = this.props;
+        const { displayName, name } = this.props;
         // string.isNullOrUndefinedOrEmpty
-        if (!(typeof displayName === "string" && displayName.length > 0)) {
-            return null;
-        } else {
-            return (<label className={styles.label} htmlFor={this.props.name}>{this.props.displayName}</label>);
-        }
+        return !(typeof displayName === "string" && displayName.length > 0)
+            ? null
+            : <label className={styles.label} htmlFor={name}>{displayName}</label>;
     }
 
-    private _getSelectControl(async: boolean, loadOptions?: any, minimumInput?: number) {
+    private _getSelectControl(async: boolean, minimumInput?: number) {
         const { placeholder, name, multi } = this.props;
         const { options, value } = this.state;
-        if (async) {
-            return (
+        return async
+            ? (
                 <Select.Async
                     {...this.props}
                     isLoading={!options}
@@ -109,10 +130,9 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
                     options={options}
                     value={value}
                 />
-            );
-        } else {
-            return (
-                <Select
+            )
+            : (
+                <Select.default
                     {...this.props}
                     isLoading={!options}
                     backspaceRemoves={false}
@@ -126,18 +146,22 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
                     value={value}
                 />
             );
-        }
-
     }
 
     private _asyncLoadOptions = (input) => {
         return this.getSearchTerms(input)
             .then((options: any) => {
-                this.setState({ ...this.state, options });
+                this.setState({
+                    ...this.state,
+                    options
+                });
                 return { options };
             })
             .catch((reason: any) => {
-                this.setState({ ...this.state, errors: [...this.state.errors, reason] });
+                this.setState({
+                    ...this.state,
+                    errors: [...this.state.errors, reason]
+                });
             });
     }
 
@@ -165,7 +189,6 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
             </div>
         );
     }
-
 }
 
 export default TaxonomyPicker;

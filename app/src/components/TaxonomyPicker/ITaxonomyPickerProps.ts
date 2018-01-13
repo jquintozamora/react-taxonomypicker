@@ -1,7 +1,6 @@
 import { Option, ReactSelectProps } from "react-select";
 
 export interface ITaxonomyPickerProps extends ReactSelectProps {
-
     /**
      * The internal name of the Taxonomy Picker (nothing to do with TermSet name).
      */
@@ -71,14 +70,12 @@ export interface ITaxonomyPickerProps extends ReactSelectProps {
      * Function (event handler which triggers when the selected value/s change/s.
      */
     onPickerChange?: (taxonomyPickerName: string, newValue: ITaxonomyValue | ITaxonomyValue[] | Option | Option[] | string | string[] | number | number[] | boolean) => void;
-};
-
+}
 
 /**
  * Defines basic taxonomy value data structure.
  */
 export interface ITaxonomyValue {
-
     /**
      * The name for a Term.
      */

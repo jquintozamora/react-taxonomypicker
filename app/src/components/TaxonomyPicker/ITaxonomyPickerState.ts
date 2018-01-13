@@ -5,4 +5,4 @@ export interface ITaxonomyPickerState {
     disabled: boolean;
     termSetCount: number;
     asyncLoad: boolean;
-};
+}
