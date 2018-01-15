@@ -124,11 +124,15 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
     }
 
     private renderOption = (option) => {
+        const fullPath = option
+            && option.path
+            && typeof option.path === "string"
+            && option.path.split(';').join(' > ') || undefined;
         return (
             <div
                 title={option.label}
             >
-                {this.props.showPath ? option.path ? <span>{option.path} > </span> : null : null}
+                {this.props.showPath ? fullPath ? <span>{fullPath} > </span> : null : null}
                 {option.label}
             </div>
         );
