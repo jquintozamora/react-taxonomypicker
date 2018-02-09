@@ -63,7 +63,8 @@ Don't configure termSetGuid and load the options from defaultOptions object.
     { label: "German", value: "44024c7e-f738-4755-90e1-15866327c806" },
     { label: "Italian", value: "65f67491-bdca-491a-84fa-f6fd913f40fa" },
   ]}
-  multi={true}
+  multi
+  showPath
 />
 ```
 
@@ -76,7 +77,8 @@ Configure termSetGuid with the desired term set
   termSetGuid="26ebf149-101a-4996-9df2-8179a537350d"
   termSetName="Language"
   termSetCountMaxSwapToAsync={100}
-  multi={true}
+  multi
+  showPath
 />
 ```
 
@@ -86,16 +88,16 @@ Configure termSetGuid with the desired term set
 - Upload to npm
 - Create [ES6 sample application](https://github.com/jquintozamora/react-taxonomypicker-consume-es6) for usage
 - Create [TypeScript sample application](https://github.com/jquintozamora/react-taxonomypicker-consume-typescript) for usage
+- Create [SPFx webpart sample for usage](https://github.com/jquintozamora/spfx-react-taxonomypicker)
 - Create types and include them with the npm package
 - onPickerChange event handler exposed
 - react-select properties exposed (extends them)
 - termSetCountMaxSwapToAsync property exposed to choose between Sync / Async modes
 - defaultOptions array exposed to enable input mock data when no termSetGuid configured
+- Create and Expose properties for custom styles
 
 ## TODOs
 - Create types to allow people include with @types
-- Create SPFx webpart sample for usage
-- Create and Expose properties for custom styles
 
 
 ## Want to contribute?
@@ -105,7 +107,7 @@ Anyone can help make this project better
 ## License
 MIT License
 
-Copyright (c) 2017 José Quinto (https://blog.josequinto.com)
+Copyright (c) 2017 - 2018 [José Quinto](https://blog.josequinto.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
