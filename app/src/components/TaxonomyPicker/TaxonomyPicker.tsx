@@ -115,7 +115,7 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
         let returned = false;
         const filterBy = this.props.showPath ? ["value", "label", "path"] : ["value", "label"]
         filterBy.forEach((p) => {
-            if (option[p].toLowerCase().includes(filter)) {
+            if (option[p].toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
                 returned = true;
                 return;
             }
