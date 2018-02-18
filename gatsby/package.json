@@ -1,0 +1,15 @@
+{
+  "name": "react-taxonomypicker-static-page-generator",
+  "scripts": {
+    "gatsby:deploy": "gatsby build --prefix-paths && gh-pages -d public",
+    "gatsby:develop": "gatsby develop"
+  },
+  "author": "Jose Quinto <quintorel@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "gatsby": "1.9.202",
+    "gatsby-link": "1.6.37",
+    "gatsby-plugin-typescript": "1.4.16",
+    "gh-pages": "1.1.0"
+  }
+}
