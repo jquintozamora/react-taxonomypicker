@@ -12,6 +12,8 @@ Initially built for use in Office 365 / SharePoint.
 
 [![NPM](https://nodei.co/npm/react-taxonomypicker.png?downloads=true)](https://nodei.co/npm/react-taxonomypicker/)
 
+## DEMO
+[https://jquintozamora.github.io/react-taxonomypicker](https://jquintozamora.github.io/react-taxonomypicker)
 
 ## Features
 - Retrieve Terms from a Term Set by Term Set GUID.
