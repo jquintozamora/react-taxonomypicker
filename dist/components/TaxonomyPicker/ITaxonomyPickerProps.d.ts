@@ -13,6 +13,8 @@ export interface ITaxonomyPickerProps extends ReactSelectProps {
     placeholder?: string;
     onPickerChange?: (taxonomyPickerName: string, newValue: ITaxonomyValue | ITaxonomyValue[] | Option | Option[] | string | string[] | number | number[] | boolean) => void;
     showPath?: boolean;
+    logErrorsConsole?: boolean;
+    logErrorsDiv?: boolean;
 }
 export interface ITaxonomyValue {
     label: string;
