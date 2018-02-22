@@ -70,6 +70,7 @@ export default class TaxonomyAPI {
     public static getSearchTermsByText(termSetGuid: string, termSetName: string, keyword: string, resultCollectionSize: number = 10, showOnlyAdvailableForTag: boolean = true) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
+                // reject("error");
                 resolve(items
                     .filter((item: any) => {
                         return (item.name.search(keyword) > -1);

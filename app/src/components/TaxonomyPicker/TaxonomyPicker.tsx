@@ -21,7 +21,9 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
         defaultValue: null,
         onPickerChange: null,
         placeholder: "Type here to search...",
-        showPath: false
+        showPath: false,
+        logErrorsConsole: false,
+        logErrorsDiv: false
     };
 
     constructor(props: any, context: any) {
@@ -42,7 +44,8 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
             termSetGuid,
             termSetName,
             termSetCountMaxSwapToAsync,
-            defaultOptions
+            defaultOptions,
+            logErrorsConsole
          } = this.props;
 
         termSetGuid !== null
@@ -63,6 +66,9 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
                                 });
                             })
                             .catch((reason: any) => {
+                                if (logErrorsConsole) {
+                                    console.error(reason);
+                                }
                                 this.setState({
                                     ...this.state,
                                     errors: [...this.state.errors, reason]
@@ -70,6 +76,9 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
                             });
                 })
                 .catch((reason: any) => {
+                    if (logErrorsConsole) {
+                        console.error(reason);
+                    }
                     this.setState({
                         ...this.state,
                         errors: [...this.state.errors, reason]
@@ -127,7 +136,7 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
         const fullPath = option
             && option.path
             && typeof option.path === "string"
-            && option.path.split(';').join(' > ') || undefined;
+            && option.path.split(";").join(" > ") || undefined;
         return (
             <div
                 title={option.label}
@@ -190,6 +199,9 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
                 return { options };
             })
             .catch((reason: any) => {
+                if (this.props.logErrorsConsole) {
+                    console.error(reason);
+                }
                 this.setState({
                     ...this.state,
                     errors: [...this.state.errors, reason]
@@ -215,11 +227,13 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
     }
 
     private renderErrorMessage() {
-        return (
-            <div>
-                {this.state.errors}
-            </div>
-        );
+        return this.props.logErrorsDiv
+            ? (
+                <div style={{ color: "red" }}>
+                    {this.state.errors}
+                </div>
+            )
+            : null;
     }
 }
 

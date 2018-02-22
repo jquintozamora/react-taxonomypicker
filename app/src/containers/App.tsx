@@ -17,8 +17,10 @@ export default class App extends React.Component<{}, {}> {
                         { label: "Italian", value: "65f67491-bdca-491a-84fa-f6fd913f40fa", path: "" },
                     ]}
                     termSetName="Language"
+                    termSetCountMaxSwapToAsync={10}
                     multi
                     showPath
+                    logErrorsConsole
                 />
             </div>
         );

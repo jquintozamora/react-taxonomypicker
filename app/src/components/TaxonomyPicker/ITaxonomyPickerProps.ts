@@ -75,6 +75,16 @@ export interface ITaxonomyPickerProps extends ReactSelectProps {
      * Show term path ?
      */
     showPath?: boolean;
+
+    /**
+     * Log Errors in console
+     */
+    logErrorsConsole?: boolean;
+
+    /**
+     * Log Errors in screen using div
+     */
+    logErrorsDiv?: boolean;
 }
 
 /**
