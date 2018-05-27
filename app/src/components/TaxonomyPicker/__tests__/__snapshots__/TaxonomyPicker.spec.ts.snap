@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TaxonomyPicker /> @renders in default state 1`] = `
+<div
+  className="container"
+  key="Taxononomy_Picker_Name"
+  title="Taxononomy_Picker_Name"
+>
+  <Select
+    arrowRenderer={[Function]}
+    autosize={true}
+    backspaceRemoves={false}
+    backspaceToRemoveMessage="Press backspace to remove {label}"
+    clearAllText="Clear all"
+    clearRenderer={[Function]}
+    clearValueText="Clear value"
+    clearable={true}
+    closeOnSelect={true}
+    defaultOptions={null}
+    defaultValue={null}
+    deleteRemoves={true}
+    delimiter=","
+    disabled={false}
+    escapeClearsValue={true}
+    filterOption={[Function]}
+    filterOptions={[Function]}
+    ignoreAccents={false}
+    ignoreCase={true}
+    inputProps={Object {}}
+    isLoading={false}
+    joinValues={false}
+    labelKey="label"
+    logErrorsConsole={false}
+    logErrorsDiv={false}
+    matchPos="any"
+    matchProp="any"
+    menuBuffer={0}
+    menuRenderer={[Function]}
+    multi={true}
+    name="Taxononomy_Picker_Name"
+    noResultsText="No results found"
+    onBlurResetsInput={true}
+    onChange={[Function]}
+    onCloseResetsInput={true}
+    onPickerChange={null}
+    onSelectResetsInput={true}
+    openOnClick={true}
+    optionComponent={[Function]}
+    optionRenderer={[Function]}
+    options={Array []}
+    pageSize={5}
+    placeholder="Type here to search..."
+    removeSelected={true}
+    required={false}
+    rtl={false}
+    scrollMenuIntoView={true}
+    searchable={true}
+    showPath={false}
+    simpleValue={false}
+    tabSelectsValue={true}
+    termSetAllTermsCacheExpiresMin={1440}
+    termSetCountCacheExpiresMin={10080}
+    termSetCountMaxSwapToAsync={300}
+    termSetGuid={null}
+    termSetName={null}
+    trimFilter={true}
+    value={null}
+    valueComponent={[Function]}
+    valueKey="value"
+  >
+     
+     
+  </Select>
+</div>
+`;
