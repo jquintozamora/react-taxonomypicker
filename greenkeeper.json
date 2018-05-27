@@ -1,0 +1,11 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "gatsby/package.json",
+        "package.json",
+        "tsconfig.package.json"
+      ]
+    }
+  }
+}
