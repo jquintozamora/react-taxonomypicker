@@ -10,7 +10,7 @@ Initially built for use in Office 365 / SharePoint.
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jquintozamora/react-taxonomypicker/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](Readme.md#want-to-contribute)
 
-[![NPM](https://nodei.co/npm/react-taxonomypicker.png?downloads=true)](https://nodei.co/npm/react-taxonomypicker/)
+[![NPM](https://nodei.co/npm/react-taxonomypicker.png?downloads=true)](https://nodei.co/npm/react-taxonomypicker/) [![Greenkeeper badge](https://badges.greenkeeper.io/jquintozamora/react-taxonomypicker.svg)](https://greenkeeper.io/)
 
 ## DEMO
 [https://jquintozamora.github.io/react-taxonomypicker](https://jquintozamora.github.io/react-taxonomypicker)
