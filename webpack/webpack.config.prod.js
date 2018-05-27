@@ -99,7 +99,7 @@ module.exports = {
                         {
                             loader: 'ts-loader',
                             options: {
-                                configFile: "tsconfig.package.json"
+                                configFile: "tsconfig.pkg.json"
                                 // transpileOnly: true,
                                 // logInfoToStdOut: true
                             }
