@@ -24,8 +24,7 @@
             "react",
             "react-dom",
             "sharepoint",
-            "jest",
-            "enzime"
+            "jest"
         ]
     }
 }

@@ -160,7 +160,6 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
                     simpleValue={false}
                     placeholder={placeholder}
                     loadOptions={this._asyncLoadOptions}
-                    minimumInput={1}
                     multi={multi}
                     ref={name}
                     onChange={this._handleSelectChange}

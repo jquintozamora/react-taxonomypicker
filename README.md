@@ -9,8 +9,11 @@ Initially built for use in Office 365 / SharePoint.
 [![Code Climate](https://codeclimate.com/github/jquintozamora/react-taxonomypicker/badges/gpa.svg)](https://codeclimate.com/github/jquintozamora/react-taxonomypicker)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jquintozamora/react-taxonomypicker/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](Readme.md#want-to-contribute)
+[![Greenkeeper badge](https://badges.greenkeeper.io/jquintozamora/react-taxonomypicker.svg)](https://greenkeeper.io/)
+[![codecov](https://codecov.io/gh/jquintozamora/react-taxonomypicker/branch/master/graph/badge.svg)](https://codecov.io/gh/jquintozamora/react-taxonomypicker)
 
-[![NPM](https://nodei.co/npm/react-taxonomypicker.png?downloads=true)](https://nodei.co/npm/react-taxonomypicker/) [![Greenkeeper badge](https://badges.greenkeeper.io/jquintozamora/react-taxonomypicker.svg)](https://greenkeeper.io/)
+[![NPM](https://nodei.co/npm/react-taxonomypicker.png?downloads=true)](https://nodei.co/npm/react-taxonomypicker/)
+
 
 ## DEMO
 [https://jquintozamora.github.io/react-taxonomypicker](https://jquintozamora.github.io/react-taxonomypicker)

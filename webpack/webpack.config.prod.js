@@ -5,7 +5,11 @@
 const resolve = require('path').resolve;
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+
 module.exports = {
+    // Don't attempt to continue if there are any errors.
+    bail: true,
     devtool: 'source-map',
     entry: {
         'React.TaxonomyPicker': './app/src/index.ts'
@@ -25,20 +29,47 @@ module.exports = {
     },
     // Exclude React from the bundle, must be react and react-dom here otherwise will not be excluded
     externals: {
-      react: {
-        root: 'React',
-        commonjs2: 'react',
-        commonjs: 'react',
-        amd: 'react',
-        umd: 'react',
-      },
-      'react-dom': {
-        root: 'ReactDOM',
-        commonjs2: 'react-dom',
-        commonjs: 'react-dom',
-        amd: 'react-dom',
-        umd: 'react-dom',
-      },
+        react: {
+            root: 'React',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react',
+            umd: 'react',
+        },
+        'react-dom': {
+            root: 'ReactDOM',
+            commonjs2: 'react-dom',
+            commonjs: 'react-dom',
+            amd: 'react-dom',
+            umd: 'react-dom',
+        },
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            // Plugings for optimizing size and performance.
+            // Here you have all the available by now:
+            //    Webpack 1. https://github.com/webpack/webpack/blob/v1.13.3/lib/optimize
+            //    Webpack 2. https://github.com/webpack/webpack/tree/master/lib/optimize
+            //    Webpack 3. uglify-js is not external (peer) dependency.
+            //              We should install version <= 2.8 by now (19/06/2017) because version 3 is not supported by plugin
+            //    Webpack 4. now uglify comes under optimization
+            new UglifyJSPlugin({
+                sourceMap: true,
+                uglifyOptions: {
+                    // https://github.com/mishoo/UglifyJS2/tree/harmony#compress-options
+                    compress: {
+                        global_defs: {
+                            __REACT_HOT_LOADER__: undefined // eslint-disable-line no-undefined
+                        }
+                    },
+                    beautify: false,
+                    ecma: 6,
+                    comments: false,
+                    mangle: false
+                }
+            })
+        ]
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -52,32 +83,7 @@ module.exports = {
             filename: '../dist/[name].css',
             allChunks: true
         }),
-        new webpack.NormalModuleReplacementPlugin(/..\/..\/utils\/MockAPI\/SP.Taxonomy$/, "../../utils/API/SP.Taxonomy"),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false,
-                screw_ie8: true,
-                conditionals: true,
-                unused: true,
-                comparisons: true,
-                sequences: true,
-                dead_code: true,
-                evaluate: true,
-                if_return: true,
-                join_vars: true,
-                drop_console: true,
-                drop_debugger: true,
-                global_defs: {
-                    __REACT_HOT_LOADER__: undefined // eslint-disable-line no-undefined
-                }
-            },
-            minimize: true,
-            debug: false,
-            sourceMap: true,
-            output: {
-                comments: false
-            },
-        })
+        new webpack.NormalModuleReplacementPlugin(/..\/..\/utils\/MockAPI\/SP.Taxonomy$/, "../../utils/API/SP.Taxonomy")
     ],
     module: {
         // loaders -> rules in webpack 2
@@ -96,15 +102,15 @@ module.exports = {
                 test: /\.ts(x?)$/,
                 exclude: /node_modules/,
                 use: [
-                        {
-                            loader: 'ts-loader',
-                            options: {
-                                configFile: "tsconfig.pkg.json"
-                                // transpileOnly: true,
-                                // logInfoToStdOut: true
-                            }
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            configFile: "tsconfig.pkg.json"
+                            // transpileOnly: true,
+                            // logInfoToStdOut: true
                         }
-                    ]
+                    }
+                ]
             },
             {
                 test: /\.css$/i,
