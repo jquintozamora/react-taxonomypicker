@@ -168,6 +168,7 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
                     value={value}
                     optionRenderer={this.renderOption}
                     filterOption={this.filterOption}
+                    ignoreAccents={false}
                 />
             )
             : (
@@ -185,6 +186,7 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
                     value={value}
                     optionRenderer={this.renderOption}
                     filterOption={this.filterOption}
+                    ignoreAccents={false}
                 />
             );
     }

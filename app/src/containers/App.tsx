@@ -15,12 +15,14 @@ export default class App extends React.Component<{}, {}> {
                         { label: "Spanish", value: "237ca323-1ed8-4199-a49b-a9f7ce4256bf", path: "Finance and Corporate" },
                         { label: "German", value: "44024c7e-f738-4755-90e1-15866327c806", path: "Reporting" },
                         { label: "Italian", value: "65f67491-bdca-491a-84fa-f6fd913f40fa", path: "" },
+                        { label: "Änderung", value: "af598742-bdca-491a-84fa-f6fd913f40f1", path: "Ëirg" }
                     ]}
                     termSetName="Language"
                     termSetCountMaxSwapToAsync={10}
                     multi
                     showPath
                     logErrorsConsole
+                    ignoreAccents={false}
                 />
             </div>
         );
