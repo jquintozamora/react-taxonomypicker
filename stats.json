@@ -5,19 +5,19 @@
       "path---index-a0e39f21c11f6a62c5ab.js.map"
     ],
     "commons": [
-      "commons-394329e527feaa117ac1.js",
+      "commons-e022f0772ff8dce9b915.js",
       "build-js-styles.css",
-      "commons-394329e527feaa117ac1.js.map",
+      "commons-e022f0772ff8dce9b915.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-index-tsx": [
-      "component---src-pages-index-tsx-17ae66a0bf4777269a74.js",
-      "component---src-pages-index-tsx-17ae66a0bf4777269a74.js.map"
+      "component---src-pages-index-tsx-dc29c5b7a5eb3cadfa0a.js",
+      "component---src-pages-index-tsx-dc29c5b7a5eb3cadfa0a.js.map"
     ],
     "app": [
-      "app-2d459924e33e6500d9f5.js",
+      "app-2bf73281a4244f517eb8.js",
       "build-js-styles.css",
-      "app-2d459924e33e6500d9f5.js.map",
+      "app-2bf73281a4244f517eb8.js.map",
       "build-js-styles.css.map"
     ]
   }
