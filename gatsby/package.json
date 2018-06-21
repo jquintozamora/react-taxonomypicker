@@ -8,7 +8,7 @@
   "license": "MIT",
   "devDependencies": {
     "gatsby": "1.9.262",
-    "gatsby-link": "1.6.44",
+    "gatsby-link": "1.6.45",
     "gatsby-plugin-typescript": "1.4.20",
     "gh-pages": "1.2.0"
   }
