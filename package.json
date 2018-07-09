@@ -51,7 +51,7 @@
     "@types/react-dom": "16.0.6",
     "@types/sharepoint": "2016.1.1",
     "autoprefixer": "8.6.3",
-    "codecov": "3.0.3",
+    "codecov": "3.0.4",
     "css-loader": "0.28.11",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
