@@ -50,7 +50,7 @@
     "@types/react": "16.4.3",
     "@types/react-dom": "16.0.7",
     "@types/sharepoint": "2016.1.1",
-    "autoprefixer": "9.1.0",
+    "autoprefixer": "9.1.1",
     "codecov": "3.0.4",
     "css-loader": "1.0.0",
     "enzyme": "3.3.0",
