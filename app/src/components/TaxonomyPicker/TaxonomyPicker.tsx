@@ -141,11 +141,12 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
             <div
                 title={option.label}
             >
-                {this.props.showPath ? fullPath ? <span>{fullPath} > </span> : null : null}
-                {option.label}
+                { this.props.showPath ? (fullPath ? <span>{fullPath} </span> : null ) : option.label }
             </div>
         );
     }
+
+
 
     private _getSelectControl(async: boolean, minimumInput?: number) {
         const { placeholder, name, multi, showPath } = this.props;
