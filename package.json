@@ -76,7 +76,7 @@
     "tslint": "5.10.0",
     "tslint-react": "3.6.0",
     "typescript": "2.8.3",
-    "webpack": "4.17.1",
+    "webpack": "4.17.2",
     "webpack-cli": "3.0.5",
     "webpack-dev-server": "3.1.6",
     "webpack-visualizer-plugin": "0.1.11"
