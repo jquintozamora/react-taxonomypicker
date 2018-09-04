@@ -67,7 +67,7 @@
     "postcss-nesting": "6.0.0",
     "react": "16.4.2",
     "react-dom": "16.4.2",
-    "react-hot-loader": "4.3.5",
+    "react-hot-loader": "4.3.6",
     "source-map-loader": "0.2.4",
     "style-loader": "0.21.0",
     "stylelint": "9.5.0",
