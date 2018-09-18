@@ -9,7 +9,7 @@
   "devDependencies": {
     "gatsby": "1.9.271",
     "gatsby-link": "1.6.46",
-    "gatsby-plugin-typescript": "1.4.20",
+    "gatsby-plugin-typescript": "2.0.0",
     "gh-pages": "1.2.0"
   }
 }
