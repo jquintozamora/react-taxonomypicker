@@ -70,7 +70,7 @@
     "react-hot-loader": "4.3.5",
     "source-map-loader": "0.2.4",
     "style-loader": "0.21.0",
-    "stylelint": "9.5.0",
+    "stylelint": "9.6.0",
     "ts-jest": "23.1.4",
     "ts-loader": "4.3.0",
     "tslint": "5.10.0",
