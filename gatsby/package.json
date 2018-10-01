@@ -7,7 +7,7 @@
   "author": "Jose Quinto <quintorel@hotmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "gatsby": "1.9.271",
+    "gatsby": "2.0.13",
     "gatsby-link": "1.6.46",
     "gatsby-plugin-typescript": "1.4.20",
     "gh-pages": "1.2.0"
