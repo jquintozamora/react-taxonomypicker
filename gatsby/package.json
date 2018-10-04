@@ -10,6 +10,6 @@
     "gatsby": "1.9.271",
     "gatsby-link": "1.6.46",
     "gatsby-plugin-typescript": "1.4.20",
-    "gh-pages": "1.2.0"
+    "gh-pages": "2.0.1"
   }
 }
