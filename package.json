@@ -69,7 +69,7 @@
     "react-dom": "16.4.2",
     "react-hot-loader": "4.3.5",
     "source-map-loader": "0.2.4",
-    "style-loader": "0.21.0",
+    "style-loader": "0.23.1",
     "stylelint": "9.5.0",
     "ts-jest": "23.1.4",
     "ts-loader": "4.3.0",
