@@ -22,7 +22,7 @@ export default class App extends React.Component<{}, {}> {
                     multi
                     showPath
                     logErrorsConsole
-                    ignoreAccents={false}
+                    // ignoreAccents={false}
                 />
             </div>
         );

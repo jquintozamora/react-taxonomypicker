@@ -8,7 +8,10 @@ import { ITaxonomyPickerState } from "./ITaxonomyPickerState";
 const styles: any = require("./TaxonomyPicker.module.css");
 /* tslint:enable:no-var-requires */
 
-class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPickerState> {
+class TaxonomyPicker extends React.Component<
+    ITaxonomyPickerProps,
+    ITaxonomyPickerState
+> {
     public static defaultProps: ITaxonomyPickerProps = {
         name: "Taxononomy_Picker_Name",
         multi: true,
@@ -23,7 +26,9 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
         placeholder: "Type here to search...",
         showPath: false,
         logErrorsConsole: false,
-        logErrorsDiv: false
+        logErrorsDiv: false,
+        loadOptions: () => {},
+        cacheOptions: false
     };
 
     constructor(props: any, context: any) {
@@ -46,55 +51,57 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
             termSetCountMaxSwapToAsync,
             defaultOptions,
             logErrorsConsole
-         } = this.props;
+        } = this.props;
 
         termSetGuid !== null
             ? TaxonomyAPI.getTermSetCount(termSetGuid, termSetName)
-                .then((termSetCount: number) => {
-                    termSetCount > termSetCountMaxSwapToAsync
-                        ? this.setState({
-                            ...this.state,
-                            asyncLoad: true,
-                            termSetCount
-                        })
-                        : this.getAllTerms()
-                            .then((options: any) => {
-                                this.setState({
-                                    ...this.state,
-                                    options,
-                                    termSetCount
-                                });
+                  .then((termSetCount: number) => {
+                      termSetCount > termSetCountMaxSwapToAsync
+                          ? this.setState({
+                                ...this.state,
+                                asyncLoad: true,
+                                termSetCount
                             })
-                            .catch((reason: any) => {
-                                if (logErrorsConsole) {
-                                    console.error(reason);
-                                }
-                                this.setState({
-                                    ...this.state,
-                                    errors: [...this.state.errors, reason]
+                          : this.getAllTerms()
+                                .then((options: any) => {
+                                    this.setState({
+                                        ...this.state,
+                                        options,
+                                        termSetCount
+                                    });
+                                })
+                                .catch((reason: any) => {
+                                    if (logErrorsConsole) {
+                                        console.error(reason);
+                                    }
+                                    this.setState({
+                                        ...this.state,
+                                        errors: [...this.state.errors, reason]
+                                    });
                                 });
-                            });
-                })
-                .catch((reason: any) => {
-                    if (logErrorsConsole) {
-                        console.error(reason);
-                    }
-                    this.setState({
-                        ...this.state,
-                        errors: [...this.state.errors, reason]
-                    });
-                })
+                  })
+                  .catch((reason: any) => {
+                      if (logErrorsConsole) {
+                          console.error(reason);
+                      }
+                      this.setState({
+                          ...this.state,
+                          errors: [...this.state.errors, reason]
+                      });
+                  })
             : defaultOptions !== null
-                ? this.setState({
-                    ...this.state,
-                    options: defaultOptions,
-                    termSetCount: defaultOptions.length
-                })
-                : this.setState({
-                    ...this.state,
-                    errors: [...this.state.errors, "Please choose termSetId or provide defaultOptions."]
-                });
-
+            ? this.setState({
+                  ...this.state,
+                  options: defaultOptions,
+                  termSetCount: defaultOptions.length
+              })
+            : this.setState({
+                  ...this.state,
+                  errors: [
+                      ...this.state.errors,
+                      "Please choose termSetId or provide defaultOptions."
+                  ]
+              });
     }
 
     public render() {
@@ -107,7 +114,9 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
             >
                 {this._getLabel()}
                 {this._getSelectControl(asyncLoad, 1)}
-                {this.state.errors.length > 0 ? this.renderErrorMessage() : null}
+                {this.state.errors.length > 0
+                    ? this.renderErrorMessage()
+                    : null}
             </div>
         );
     }
@@ -115,83 +124,73 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
     private _getLabel() {
         const { displayName, name } = this.props;
         // string.isNullOrUndefinedOrEmpty
-        return !(typeof displayName === "string" && displayName.length > 0)
-            ? null
-            : <label className={styles.label} htmlFor={name}>{displayName}</label>;
-    }
-
-    private filterOption = (option, filter) => {
-        let returned = false;
-        const filterBy = this.props.showPath ? ["value", "label", "path"] : ["value", "label"]
-        filterBy.forEach((p) => {
-            if (option[p].toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
-                returned = true;
-                return;
-            }
-        });
-        return returned;
-    }
-
-    private renderOption = (option) => {
-        const fullPath = option
-            && option.path
-            && typeof option.path === "string"
-            && option.path.split(";").join(" > ") || undefined;
-        return (
-            <div
-                title={option.label}
-            >
-                { this.props.showPath ? (fullPath ? <span>{fullPath} </span> : null ) : option.label }
-            </div>
+        return !(
+            typeof displayName === "string" && displayName.length > 0
+        ) ? null : (
+            <label className={styles.label} htmlFor={name}>
+                {displayName}
+            </label>
         );
     }
 
+    private customFilter = Select.createFilter({
+        ignoreCase: true,
+        ignoreAccents: true,
+        stringify: option =>
+            this.props.showPath
+                ? `${option.label} ${option.value} ${option.path}`
+                : `${option.label} ${option.value}`
+    });
 
+    private renderOptionLabel = option => {
+        const fullPath =
+            (option.path && option.path.split(";").join(" > ") + " > ") ||
+            undefined;
+        return this.props.showPath && fullPath
+            ? fullPath + option.label
+            : option.label;
+    };
 
     private _getSelectControl(async: boolean, minimumInput?: number) {
         const { placeholder, name, multi, showPath } = this.props;
         const { options, value } = this.state;
-        return async
-            ? (
-                <Select.Async
-                    {...this.props}
-                    isLoading={!options}
-                    backspaceRemoves={false}
-                    name={name}
-                    simpleValue={false}
-                    placeholder={placeholder}
-                    loadOptions={this._asyncLoadOptions}
-                    multi={multi}
-                    ref={name}
-                    onChange={this._handleSelectChange}
-                    options={options}
-                    value={value}
-                    optionRenderer={this.renderOption}
-                    filterOption={this.filterOption}
-                    ignoreAccents={false}
-                />
-            )
-            : (
-                <Select.default
-                    {...this.props}
-                    isLoading={!options}
-                    backspaceRemoves={false}
-                    name={name}
-                    simpleValue={false}
-                    placeholder={placeholder}
-                    multi={multi}
-                    ref={name}
-                    onChange={this._handleSelectChange}
-                    options={options}
-                    value={value}
-                    optionRenderer={this.renderOption}
-                    filterOption={this.filterOption}
-                    ignoreAccents={false}
-                />
-            );
+        return async ? (
+            <Select.Async
+                {...this.props}
+                isLoading={!options}
+                backspaceRemovesValue={false}
+                name={name}
+                placeholder={placeholder}
+                loadOptions={this._asyncLoadOptions}
+                isMulti={multi}
+                ref={name}
+                onChange={this._handleSelectChange}
+                options={options}
+                value={value}
+                getOptionLabel={this.renderOptionLabel}
+                filterOption={this.customFilter}
+                // ignoreAccents={false}
+            />
+        ) : (
+            <Select.default
+                {...this.props}
+                isLoading={!options}
+                backspaceRemovesValue={false}
+                name={name}
+                placeholder={placeholder}
+                isMulti={multi}
+                ref={name}
+                onChange={this._handleSelectChange}
+                options={options}
+                value={value}
+                getOptionLabel={this.renderOptionLabel}
+                filterOption={this.customFilter}
+                // ignoreAccents={false}
+            />
+        );
     }
 
-    private _asyncLoadOptions = (input) => {
+    private _asyncLoadOptions = input => {
         return this.getSearchTerms(input)
             .then((options: any) => {
                 this.setState({
@@ -209,33 +208,37 @@ class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxonomyPick
                     errors: [...this.state.errors, reason]
                 });
             });
-    }
+    };
 
     private _handleSelectChange = (value: any) => {
         this.setState({ ...this.state, value });
         if (typeof this.props.onPickerChange === "function") {
             this.props.onPickerChange(this.props.name, value);
         }
-    }
+    };
 
     private getSearchTerms(input: string) {
-        const termFetcher = TaxonomyAPI.getSearchTermsByText(this.props.termSetGuid, this.props.termSetName, input);
+        const termFetcher = TaxonomyAPI.getSearchTermsByText(
+            this.props.termSetGuid,
+            this.props.termSetName,
+            input
+        );
         return termFetcher;
     }
 
     private getAllTerms() {
-        const termFetcher = TaxonomyAPI.getAllTermsByTermSet(this.props.termSetGuid, this.props.termSetName, false);
+        const termFetcher = TaxonomyAPI.getAllTermsByTermSet(
+            this.props.termSetGuid,
+            this.props.termSetName,
+            false
+        );
         return termFetcher;
     }
 
     private renderErrorMessage() {
-        return this.props.logErrorsDiv
-            ? (
-                <div style={{ color: "red" }}>
-                    {this.state.errors}
-                </div>
-            )
-            : null;
+        return this.props.logErrorsDiv ? (
+            <div style={{ color: "red" }}>{this.state.errors}</div>
+        ) : null;
     }
 }
 

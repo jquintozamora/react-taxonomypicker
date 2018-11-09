@@ -1,6 +1,21 @@
-import { Option, ReactSelectProps } from "react-select";
+import { OptionProps } from "react-select/lib/types";
+import { Props as SelectProps } from "react-select/lib/Select";
+import { AsyncProps } from "react-select/lib/Async";
 
-export interface ITaxonomyPickerProps extends ReactSelectProps {
+type OptionValue =
+    | ITaxonomyValue
+    | ITaxonomyValue[]
+    | OptionProps
+    | OptionProps[]
+    | string
+    | string[]
+    | number
+    | number[]
+    | boolean;
+
+export interface ITaxonomyPickerProps
+    extends SelectProps<OptionValue>,
+        AsyncProps<OptionValue> {
     /**
      * The internal name of the Taxonomy Picker (nothing to do with TermSet name).
      */
@@ -53,12 +68,12 @@ export interface ITaxonomyPickerProps extends ReactSelectProps {
     /**
      * The defaultOptions values to be used as a Mock values
      */
-    defaultOptions?: ITaxonomyValue[] | Option[];
+    defaultOptions: ITaxonomyValue[] | OptionProps[];
 
     /**
      * initial Taxonomy Picker value
      */
-    defaultValue?: ITaxonomyValue | ITaxonomyValue[] | Option | Option[] | string | string[] | number | number[] | boolean;
+    defaultValue?: OptionValue;
 
     /**
      * field placeholder, displayed when there's no value
@@ -69,7 +84,10 @@ export interface ITaxonomyPickerProps extends ReactSelectProps {
     /**
      * Function (event handler which triggers when the selected value/s change/s.
      */
-    onPickerChange?: (taxonomyPickerName: string, newValue: ITaxonomyValue | ITaxonomyValue[] | Option | Option[] | string | string[] | number | number[] | boolean) => void;
+    onPickerChange?: (
+        taxonomyPickerName: string,
+        newValue: OptionValue
+    ) => void;
 
     /**
      * Show term path ?
