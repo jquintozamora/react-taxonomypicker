@@ -48,7 +48,7 @@ export default class TaxonomyAPI {
      * It will be used to get all terms when a TaxonomyPicker is Sync
      * Session Storage Cache will expire in 1 day = 1440 minutes
      */
-    public static getAllTermsByTermSet(termSetGuid: string, termSetName: string, showOnlyAdvailableForTag: boolean) {
+    public static getAllTermsByTermSet(termSetGuid: string, termSetName: string, showOnlyAvailableForTag: boolean) {
         return new Promise((resolve, reject) => {
             const termSetDataCacheExpiresMin: number = 1440;
             const termSetDataCacheKey: string = "TermSetData_" + termSetName + termSetGuid;
@@ -75,7 +75,7 @@ export default class TaxonomyAPI {
                                 const termEnumerator = terms.getEnumerator();
                                 while (termEnumerator.moveNext()) {
                                     const currentTerm: any = termEnumerator.get_current();
-                                    const isAvailableForTagging: boolean = showOnlyAdvailableForTag ? currentTerm.get_isAvailableForTagging() : true;
+                                    const isAvailableForTagging: boolean = showOnlyAvailableForTag ? currentTerm.get_isAvailableForTagging() : true;
                                     if (isAvailableForTagging) {
                                         const termObj: any = {
                                             label: currentTerm.get_name(),
@@ -102,7 +102,7 @@ export default class TaxonomyAPI {
      * It will be used to get all terms when a TaxonomyPicker is Async
      * NO Session Storage Cache ENABLED
      */
-    public static getSearchTermsByText(termSetGuid: string, termSetName: string, keyword: string, resultCollectionSize: number = 10, showOnlyAdvailableForTag: boolean = true) {
+    public static getSearchTermsByText(termSetGuid: string, termSetName: string, keyword: string, resultCollectionSize: number = 10, showOnlyAvailableForTag: boolean = true) {
         return new Promise((resolve, reject) => {
             if (keyword === "") { return resolve([]); }
             SP.SOD.executeFunc("sp.js", "SP.ClientContext", () => {
@@ -128,7 +128,7 @@ export default class TaxonomyAPI {
                                 const termEnumerator = terms.getEnumerator();
                                 while (termEnumerator.moveNext()) {
                                     const currentTerm: any = termEnumerator.get_current();
-                                    const isAvailableForTagging: boolean = showOnlyAdvailableForTag ? currentTerm.get_isAvailableForTagging() : true;
+                                    const isAvailableForTagging: boolean = showOnlyAvailableForTag ? currentTerm.get_isAvailableForTagging() : true;
                                     if (isAvailableForTagging) {
                                         const termObj: any = {
                                             label: currentTerm.get_name(),

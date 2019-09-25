@@ -54,7 +54,7 @@ export default class TaxonomyAPI {
         });
     }
 
-    public static getAllTermsByTermSet(termSetGuid: string, termSetName: string, showOnlyAdvailableForTag: boolean) {
+    public static getAllTermsByTermSet(termSetGuid: string, termSetName: string, showOnlyAvailableForTag: boolean) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(items.slice(0, getTermsCount(termSetGuid)));
@@ -67,7 +67,7 @@ export default class TaxonomyAPI {
      * It will be used to get all terms when a TaxonomyPicker is Async
      * NO Session Storage Cache ENABLED
      */
-    public static getSearchTermsByText(termSetGuid: string, termSetName: string, keyword: string, resultCollectionSize: number = 10, showOnlyAdvailableForTag: boolean = true) {
+    public static getSearchTermsByText(termSetGuid: string, termSetName: string, keyword: string, resultCollectionSize: number = 10, showOnlyAvailableForTag: boolean = true) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 // reject("error");

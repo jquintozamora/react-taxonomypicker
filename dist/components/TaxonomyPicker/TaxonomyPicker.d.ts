@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import * as React from "react";
 import { ITaxonomyPickerProps } from "./ITaxonomyPickerProps";
 import { ITaxonomyPickerState } from "./ITaxonomyPickerState";
@@ -7,14 +6,14 @@ declare class TaxonomyPicker extends React.Component<ITaxonomyPickerProps, ITaxo
     constructor(props: any, context: any);
     componentDidMount(): void;
     render(): JSX.Element;
-    private _getLabel();
-    private filterOption;
-    private renderOption;
-    private _getSelectControl(async, minimumInput?);
+    private _getLabel;
+    private customFilter;
+    private renderOptionLabel;
+    private _getSelectControl;
     private _asyncLoadOptions;
     private _handleSelectChange;
-    private getSearchTerms(input);
-    private getAllTerms();
-    private renderErrorMessage();
+    private getSearchTerms;
+    private getAllTerms;
+    private renderErrorMessage;
 }
 export default TaxonomyPicker;

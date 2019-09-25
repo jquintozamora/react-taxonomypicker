@@ -4,33 +4,33 @@
 //  author: Jose Quinto - https://blogs.josequinto.com
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-const resolve = require('path').resolve;
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const resolve = require("path").resolve;
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     // To enhance the debugging process. More info: https://webpack.js.org/configuration/devtool/
-    devtool: 'inline-source-map',
-    target: 'web',
+    devtool: "inline-source-map",
+    target: "web",
     entry: {
-        'React.TaxonomyPicker': [
+        "React.TaxonomyPicker": [
             // Our app main entry
-            './app/src/index.dev.tsx'
+            "./app/src/index.dev.tsx"
         ]
     },
     output: {
         // Next line is not used in dev but WebpackDevServer crashes without it
-        path: resolve(__dirname, './../build'),
+        path: resolve(__dirname, "./../build"),
         // Add /* filename */ comments to generated require()s in the output.
         pathinfo: true,
         // This does not produce a real file. It's just the virtual path that is
         // served by WebpackDevServer in development. This is the JS bundle
         // containing code from all our entry points, and the Webpack runtime.
-        filename: 'static/js/[name].js',
+        filename: "static/js/[name].js",
         // There are also additional JS chunk files if you use code splitting.
-        chunkFilename: 'static/js/[name].chunk.js',
+        chunkFilename: "static/js/[name].chunk.js",
         // This is the URL that app is served from. We use "/" in development.
-        publicPath: '/'
+        publicPath: "/"
     },
 
     devServer: {
@@ -39,9 +39,9 @@ module.exports = {
         // enable HMR on the server
         hot: true,
         // match the output path
-        contentBase: resolve(__dirname, '../dist'),
+        contentBase: resolve(__dirname, "../dist"),
         // match the output `publicPath`
-        publicPath: '/',
+        publicPath: "/",
 
         // Enable to integrate with Docker
         //host:"0.0.0.0",
@@ -52,26 +52,27 @@ module.exports = {
         stats: {
             colors: true, // color is life
             chunks: false, // this reduces the amount of stuff I see in my terminal; configure to your needs
-            'errors-only': true
+            "errors-only": true
         }
     },
 
-    context: resolve(__dirname, '../'),
+    context: resolve(__dirname, "../"),
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js"]
     },
     plugins: [
-
         // replacement for Mock APIs
-        new webpack.NormalModuleReplacementPlugin(/(\.*)\/api\/(\.*)/, function (resource) {
+        new webpack.NormalModuleReplacementPlugin(/(\.*)\/api\/(\.*)/, function(
+            resource
+        ) {
             resource.request = resource.request.replace(/api/, `/apiMock/`);
         }),
 
         // Generates an `index.html` file with the <script> injected.
         new HtmlWebpackPlugin({
             inject: true,
-            template: 'public/index.html',
+            template: "public/index.html"
         }),
 
         // enable HMR globally
@@ -93,54 +94,51 @@ module.exports = {
             // to extract these source maps and pass them to the browser,
             // this way we will get the source file exactly as we see it in our code editor.
             {
-                enforce: 'pre',
+                enforce: "pre",
                 test: /\.js$/,
-                loader: 'source-map-loader',
-                exclude: '/node_modules/'
+                loader: "source-map-loader",
+                exclude: "/node_modules/"
             },
             {
-                enforce: 'pre',
+                enforce: "pre",
                 test: /\.tsx?$/,
                 use: "source-map-loader",
-                exclude: '/node_modules/'
+                exclude: "/node_modules/"
             },
             // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
             {
                 test: /\.ts(x?)$/,
-                use: [
-                    { loader: 'ts-loader' }
-                ],
-                include: resolve(__dirname, './../app/src')
+                use: [{ loader: "ts-loader" }],
+                include: resolve(__dirname, "./../app/src")
             },
             {
                 test: /\.css$/i,
-                include: resolve(__dirname, './../app/stylesheets'),
+                include: resolve(__dirname, "./../app/stylesheets"),
                 use: [
                     {
-                        loader: 'style-loader'
+                        loader: "style-loader"
                     },
                     {
-                        loader: 'css-loader',
+                        loader: "css-loader",
                         options: {
                             sourceMap: true,
-                            importLoaders: 1,
-                            minimize: true
-                        },
+                            importLoaders: 1
+                        }
                     },
                     {
-                        loader: 'postcss-loader',
+                        loader: "postcss-loader",
                         options: {
-                            plugins: () => ([
+                            plugins: () => [
                                 require("postcss-import")({
                                     //If you are using postcss-import v8.2.0 & postcss-loader v1.0.0 or later, this is unnecessary.
                                     //addDependencyTo: webpack // Must be first item in list
                                 }),
-                                require("postcss-nesting")(),  // Following CSS Nesting Module Level 3: http://tabatkins.github.io/specs/css-nesting/
-                                require("postcss-custom-properties")(),
-                                require("autoprefixer")({
-                                    browsers: ['last 2 versions', 'ie >= 9'] //https://github.com/ai/browserslist
-                                })
-                            ])
+                                require("postcss-nesting")(), // Following CSS Nesting Module Level 3: http://tabatkins.github.io/specs/css-nesting/
+                                require("postcss-custom-properties")({
+                                    preserve: false
+                                }),
+                                require("autoprefixer")()
+                            ]
                         }
                     }
                 ]
@@ -148,21 +146,22 @@ module.exports = {
             {
                 test: /\.css$/i,
                 exclude: [/node_modules/],
-                include: resolve(__dirname, './../app/src'),
+                include: resolve(__dirname, "./../app/src"),
                 use: [
                     {
-                        loader: 'style-loader'
+                        loader: "style-loader"
                     },
+                    "css-modules-typescript-loader",
                     {
-                        loader: 'css-loader',
+                        loader: "css-loader",
                         options: {
                             sourceMap: true,
                             importLoaders: 1,
-                            modules: true,
-                            camelCase: true,
-                            localIdentName: '[name]_[local]_[hash:base64:5]',
-                            minimize: false
-                        },
+                            modules: {
+                                localIdentName: "[name]_[local]_[hash:base64:5]"
+                            },
+                            localsConvention: "camelCase"
+                        }
                     }
                 ]
             }

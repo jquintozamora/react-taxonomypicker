@@ -95,7 +95,6 @@
 .Select div,
 .Select input,
 .Select span {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -104,8 +103,7 @@
 }
 
 .Select.is-disabled > .Select-control:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .Select.is-disabled .Select-arrow-zone {
@@ -131,8 +129,7 @@
 }
 
 .Select-control:hover {
-  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
-          box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
 }
 
 .Select-control .Select-input:focus {
@@ -162,8 +159,7 @@
 
 .is-focused:not(.is-open) > .Select-control {
   border-color: #666666;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 0 3px rgba(0, 126, 255, .1);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 0 3px rgba(0, 126, 255, .1);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 0 3px rgba(0, 126, 255, .1);
 }
 
 .Select-placeholder {
@@ -220,8 +216,7 @@
   width: 100%;
   background: none transparent;
   border: 0 none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   cursor: default;
   display: inline-block;
   font-family: inherit;
@@ -261,8 +256,7 @@
   animation: Select-animation-spin 400ms infinite linear;
   width: 16px;
   height: 16px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   border-radius: 50%;
   border: 2px solid #cccccc;
   border-right-color: #333333;
@@ -360,10 +354,8 @@
   background-color: #ffffff;
   border: 1px solid #cccccc;
   border-top-color: #e6e6e6;
-  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
-          box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+  box-sizing: border-box;
   margin-top: -1px;
   max-height: 200px;
   position: absolute;
@@ -379,8 +371,7 @@
 }
 
 .Select-option {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   background-color: #ffffff;
   color: #666666;
   cursor: pointer;
@@ -405,8 +396,7 @@
 }
 
 .Select-noresults {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   color: #999999;
   cursor: default;
   display: block;
@@ -429,8 +419,7 @@
   border: 1px solid #dadada;
   background: #dadada;
   color: #666666;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
+  flex-shrink: 0;
   vertical-align: top;
   background: #f4f4f4;
   margin: 1px;
@@ -509,8 +498,7 @@
 
 @keyframes Select-animation-spin {
   to {
-    -webkit-transform: rotate(1turn);
-            transform: rotate(1turn);
+    transform: rotate(1turn);
   }
 }
 
@@ -538,6 +526,7 @@
   clear: both;
   font-size: 0;
 }
+
 .TaxonomyPicker-module_label_3PMfL {
   font-family: 'Segoe UI WestEuropean','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',sans-serif;
   text-align: left;
@@ -550,5 +539,6 @@
   box-shadow: none;
   box-sizing: border-box;
 }
+
 
 /*# sourceMappingURL=React.TaxonomyPicker.css.map*/

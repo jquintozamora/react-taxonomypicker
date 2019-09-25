@@ -1,5 +1,8 @@
-import { Option, ReactSelectProps } from "react-select";
-export interface ITaxonomyPickerProps extends ReactSelectProps {
+import { OptionProps } from "react-select/lib/types";
+import { Props as SelectProps } from "react-select/lib/Select";
+import { AsyncProps } from "react-select/lib/Async";
+declare type OptionValue = ITaxonomyValue | ITaxonomyValue[] | OptionProps | OptionProps[] | string | string[] | number | number[] | boolean;
+export interface ITaxonomyPickerProps extends SelectProps<OptionValue>, AsyncProps<OptionValue> {
     name: string;
     multi: boolean;
     displayName?: string;
@@ -8,10 +11,10 @@ export interface ITaxonomyPickerProps extends ReactSelectProps {
     termSetCountMaxSwapToAsync?: number;
     termSetCountCacheExpiresMin?: number;
     termSetAllTermsCacheExpiresMin?: number;
-    defaultOptions?: ITaxonomyValue[] | Option[];
-    defaultValue?: ITaxonomyValue | ITaxonomyValue[] | Option | Option[] | string | string[] | number | number[] | boolean;
+    defaultOptions: ITaxonomyValue[] | OptionProps[];
+    defaultValue?: OptionValue;
     placeholder?: string;
-    onPickerChange?: (taxonomyPickerName: string, newValue: ITaxonomyValue | ITaxonomyValue[] | Option | Option[] | string | string[] | number | number[] | boolean) => void;
+    onPickerChange?: (taxonomyPickerName: string, newValue: OptionValue) => void;
     showPath?: boolean;
     logErrorsConsole?: boolean;
     logErrorsDiv?: boolean;
@@ -21,3 +24,4 @@ export interface ITaxonomyValue {
     value: string;
     path: string;
 }
+export {};
