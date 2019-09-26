@@ -13,7 +13,7 @@ class TaxonomyPicker extends React.Component<
     ITaxonomyPickerState
 > {
     public static defaultProps: ITaxonomyPickerProps = {
-        name: "Taxononomy_Picker_Name",
+        name: "Taxonomy_Picker_Name",
         multi: true,
         termSetGuid: null,
         termSetName: null,
