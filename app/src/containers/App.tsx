@@ -20,7 +20,7 @@ export default class App extends React.Component<{}, {}> {
                     termSetName="Language"
                     termSetCountMaxSwapToAsync={10}
                     multi
-                    showPath
+                    showPath={false}
                     logErrorsConsole
                     // ignoreAccents={false}
                 />

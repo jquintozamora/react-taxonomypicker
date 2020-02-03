@@ -152,7 +152,7 @@ class TaxonomyPicker extends React.Component<
     };
 
     private _getSelectControl(async: boolean, minimumInput?: number) {
-        const { placeholder, name, multi, showPath } = this.props;
+        const { placeholder, name, multi } = this.props;
         const { options, value } = this.state;
         return async ? (
             <Select.Async
